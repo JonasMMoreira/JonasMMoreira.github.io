@@ -499,6 +499,178 @@ img {
   margin-top: 0;
 }
 
+.case-hero {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 40px;
+  align-items: center;
+  padding: 72px 64px 48px;
+}
+
+.case-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--gold-d);
+}
+
+.case-kicker::before {
+  content: "";
+  width: 34px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.case-title {
+  margin-top: 18px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(42px, 5vw, 70px);
+  line-height: 0.98;
+}
+
+.case-title em {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.case-text {
+  margin-top: 24px;
+  max-width: 620px;
+  color: var(--muted);
+  line-height: 1.9;
+  font-size: 17px;
+}
+
+.case-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+.case-media-wrap {
+  display: grid;
+  gap: 18px;
+}
+
+.case-cover {
+  min-height: 520px;
+  border-radius: 4px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: var(--shadow);
+}
+
+.case-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.case-fact {
+  padding: 18px 20px;
+  background: rgba(253, 252, 250, 0.88);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.case-fact strong {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--gold-d);
+}
+
+.case-fact span {
+  display: block;
+  margin-top: 7px;
+  color: var(--ink2);
+  line-height: 1.55;
+}
+
+.case-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 24px;
+}
+
+.case-block {
+  padding: 32px;
+  background: rgba(253, 252, 250, 0.88);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.case-block h2,
+.case-block h3,
+.case-aside-card h3 {
+  font-family: "Cormorant Garamond", serif;
+  line-height: 1.08;
+}
+
+.case-block h2 {
+  font-size: 38px;
+}
+
+.case-block h3,
+.case-aside-card h3 {
+  font-size: 30px;
+}
+
+.case-block p,
+.case-block li,
+.case-aside-card p {
+  margin-top: 14px;
+  color: var(--muted);
+  line-height: 1.85;
+}
+
+.case-aside {
+  display: grid;
+  gap: 24px;
+}
+
+.case-aside-card {
+  padding: 30px;
+  background: var(--ink);
+  color: rgba(253, 252, 250, 0.84);
+  box-shadow: var(--shadow);
+}
+
+.case-aside-card p {
+  color: rgba(253, 252, 250, 0.68);
+}
+
+.case-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.case-gallery-item {
+  overflow: hidden;
+  border-radius: 4px;
+  background: rgba(253, 252, 250, 0.88);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.case-gallery-item img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.case-gallery-item div {
+  padding: 16px 18px 18px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
 .bullet-list {
   list-style: none;
 }
@@ -708,6 +880,10 @@ img {
   .page-hero,
   .grid-4,
   .grid-3,
+  .case-hero,
+  .case-layout,
+  .case-facts,
+  .case-gallery,
   .portfolio-feature-grid,
   .portfolio-archive,
   .portfolio-summary,
