@@ -405,6 +405,100 @@ img {
   font-size: 30px;
 }
 
+.portfolio-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.portfolio-feature {
+  overflow: hidden;
+  background: rgba(253, 252, 250, 0.9);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+}
+
+.portfolio-feature-media {
+  aspect-ratio: 16 / 10;
+  background-size: cover;
+  background-position: center;
+}
+
+.portfolio-feature-copy {
+  padding: 30px;
+}
+
+.portfolio-feature-copy h3 {
+  margin-top: 12px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 34px;
+  line-height: 1.08;
+}
+
+.portfolio-feature-copy p {
+  margin-top: 14px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.portfolio-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.portfolio-meta-item {
+  padding: 14px 16px;
+  background: var(--warm);
+  border: 1px solid var(--sand);
+}
+
+.portfolio-meta-item strong {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold-d);
+}
+
+.portfolio-meta-item span {
+  display: block;
+  margin-top: 6px;
+  line-height: 1.5;
+  color: var(--ink2);
+}
+
+.portfolio-archive {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.portfolio-archive .project-media {
+  aspect-ratio: 5 / 4;
+}
+
+.portfolio-archive .project-copy h3 {
+  font-size: 28px;
+  line-height: 1.08;
+}
+
+.portfolio-archive .project-copy p {
+  margin-top: 12px;
+}
+
+.portfolio-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.portfolio-summary .metric-card h3 {
+  margin-top: 0;
+}
+
 .bullet-list {
   list-style: none;
 }
@@ -614,6 +708,10 @@ img {
   .page-hero,
   .grid-4,
   .grid-3,
+  .portfolio-feature-grid,
+  .portfolio-archive,
+  .portfolio-summary,
+  .portfolio-meta,
   .contact-band,
   .cta-banner,
   .footer-grid {
