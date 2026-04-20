@@ -924,3 +924,665 @@ function sendWhatsApp() {
 </script>
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sobre | JM Edificações</title>
+<meta name="description" content="Conheça Jonas de Matos Moreira e a história da JM Edificações — engenharia civil em Aracaju com planejamento, técnica e compromisso.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink:    #141210;
+  --ink2:   #3a3530;
+  --muted:  #7a7068;
+  --warm:   #f7f3ee;
+  --sand:   #e8e0d4;
+  --line:   rgba(20,18,16,.1);
+  --gold:   #c19a52;
+  --gold-d: #8f6e30;
+  --white:  #fdfcfa;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'Outfit', sans-serif; background: var(--white); color: var(--ink); overflow-x: hidden; }
+a { text-decoration: none; }
+img { display: block; max-width: 100%; }
+.label {
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  font-weight: 600; color: var(--gold);
+}
+
+/* ══ NAV ══ */
+.nav {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 64px; height: 72px;
+  background: rgba(253,252,250,.94);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+  transition: box-shadow .3s;
+}
+.nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,.07); }
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px; font-weight: 700; color: var(--ink);
+  letter-spacing: -0.5px; line-height: 1;
+}
+.nav-logo sup { font-size: 13px; color: var(--gold); vertical-align: super; }
+.nav-menu { display: flex; align-items: center; gap: 40px; list-style: none; }
+.nav-menu a {
+  font-size: 13px; font-weight: 500; letter-spacing: .8px;
+  color: var(--ink2); text-transform: uppercase;
+  position: relative; padding-bottom: 2px; transition: color .2s;
+}
+.nav-menu a::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  height: 1px; width: 0; background: var(--gold); transition: width .3s;
+}
+.nav-menu a:hover { color: var(--ink); }
+.nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
+.nav-menu a.active { color: var(--ink); }
+.nav-wpp {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--ink); color: var(--white) !important;
+  padding: 10px 20px; border-radius: 2px;
+  font-size: 13px !important; font-weight: 600 !important;
+  letter-spacing: .5px !important; text-transform: none !important;
+  transition: background .25s;
+}
+.nav-wpp:hover { background: var(--gold-d) !important; }
+.nav-wpp::after { display: none !important; }
+.nav-wpp svg { width: 16px; height: 16px; fill: currentColor; }
+
+/* ══ PAGE HERO ══ */
+.page-hero {
+  margin-top: 72px;
+  min-height: 440px;
+  display: flex; align-items: flex-end;
+  position: relative; overflow: hidden;
+  background: var(--ink);
+  padding: 0 64px 72px;
+}
+.page-hero-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(20,18,16,.5) 0%, rgba(20,18,16,.92) 100%);
+}
+.page-hero-bg img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  opacity: .35; filter: saturate(.6);
+}
+.page-hero-content {
+  position: relative; z-index: 1;
+  max-width: 700px;
+  animation: up .9s ease both;
+}
+.page-hero-bread {
+  font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: rgba(253,252,250,.35); margin-bottom: 24px;
+}
+.page-hero-bread a { color: rgba(253,252,250,.35); transition: color .2s; }
+.page-hero-bread a:hover { color: var(--gold); }
+.page-hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(48px, 5.5vw, 78px);
+  font-weight: 600; line-height: 1.0;
+  color: var(--white); letter-spacing: -1px;
+}
+.page-hero h1 em { font-style: italic; color: var(--gold); }
+.page-hero-sub {
+  margin-top: 20px; font-size: 17px; line-height: 1.7;
+  color: rgba(253,252,250,.55); max-width: 500px;
+}
+
+/* ══ INTRO ══ */
+.about-intro {
+  padding: 120px 64px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+}
+.about-photo-wrap { position: relative; }
+.about-photo {
+  width: 100%; aspect-ratio: 4/5;
+  overflow: hidden; border-radius: 3px;
+  background: var(--sand);
+}
+.about-photo img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(.88) saturate(.8);
+  transition: transform .6s ease;
+}
+.about-photo-wrap:hover .about-photo img { transform: scale(1.03); }
+.about-photo-wrap::before {
+  content: '';
+  position: absolute; top: 16px; left: -16px; right: 16px; bottom: -16px;
+  border: 1px solid var(--gold); border-radius: 3px;
+  opacity: .4; z-index: -1;
+}
+.photo-badge {
+  position: absolute; bottom: -24px; right: -24px;
+  background: var(--gold); color: var(--white);
+  padding: 22px 26px; border-radius: 2px;
+  box-shadow: 0 8px 32px rgba(193,154,82,.3);
+  text-align: center;
+}
+.badge-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 40px; font-weight: 700; line-height: 1;
+}
+.badge-label { font-size: 12px; opacity: .85; margin-top: 4px; letter-spacing: .5px; }
+
+.about-content .label { margin-bottom: 16px; display: block; }
+.about-content h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 3.5vw, 52px);
+  font-weight: 600; line-height: 1.1; color: var(--ink);
+}
+.about-content h2 em { font-style: italic; color: var(--gold); }
+.about-text {
+  margin-top: 28px; font-size: 16px; line-height: 1.85; color: var(--muted);
+}
+.about-text p + p { margin-top: 18px; }
+
+.name-card {
+  display: flex; align-items: center; gap: 16px;
+  margin-top: 40px; padding: 20px 24px;
+  background: var(--warm); border: 1px solid var(--sand);
+  border-radius: 2px;
+}
+.name-avatar {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-family: 'Cormorant Garamond', serif;
+  font-size: 24px; font-weight: 700; flex-shrink: 0;
+}
+.name-info strong { display: block; font-size: 15px; font-weight: 600; color: var(--ink); }
+.name-info span { font-size: 13px; color: var(--muted); }
+
+/* ══ PILARES ══ */
+.pilares {
+  background: var(--ink);
+  padding: 120px 64px;
+}
+.pilares-head { text-align: center; margin-bottom: 80px; }
+.pilares-head .label { color: var(--gold); }
+.pilares-head h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 600; color: var(--white);
+  line-height: 1.1; margin-top: 14px;
+}
+.pilares-head h2 em { font-style: italic; color: var(--gold); }
+.pilares-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: rgba(255,255,255,.05);
+}
+.pilar-card {
+  background: var(--ink);
+  padding: 56px 44px;
+  position: relative; overflow: hidden;
+  transition: background .3s;
+}
+.pilar-card::before {
+  content: '';
+  position: absolute; bottom: 0; left: 0;
+  height: 2px; width: 0; background: var(--gold);
+  transition: width .4s;
+}
+.pilar-card:hover { background: rgba(255,255,255,.04); }
+.pilar-card:hover::before { width: 100%; }
+.pilar-num-bg {
+  position: absolute; top: 20px; right: 28px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 80px; font-weight: 700;
+  color: rgba(255,255,255,.04); line-height: 1;
+  user-select: none; pointer-events: none;
+}
+.pilar-icon { font-size: 40px; margin-bottom: 28px; }
+.pilar-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-weight: 600; color: var(--white);
+  margin-bottom: 16px;
+}
+.pilar-title span { color: var(--gold); }
+.pilar-desc { font-size: 15px; line-height: 1.75; color: rgba(253,252,250,.55); }
+
+/* ══ MISSÃO ══ */
+.missao {
+  padding: 120px 64px;
+  background: var(--warm);
+  border-top: 1px solid var(--sand);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: start;
+}
+.missao-left .label { display: block; margin-bottom: 16px; }
+.missao-left h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 3.5vw, 52px);
+  font-weight: 600; line-height: 1.1; color: var(--ink);
+}
+.missao-left h2 em { font-style: italic; color: var(--gold); }
+.missao-left p {
+  margin-top: 24px; font-size: 16px; line-height: 1.85; color: var(--muted);
+}
+.missao-left blockquote {
+  margin-top: 36px; padding: 24px 28px;
+  border-left: 3px solid var(--gold);
+  background: rgba(193,154,82,.07);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-style: italic; font-weight: 600;
+  color: var(--ink); line-height: 1.5;
+}
+.missao-left blockquote cite {
+  display: block; margin-top: 12px;
+  font-size: 13px; font-style: normal; font-weight: 500;
+  font-family: 'Outfit', sans-serif;
+  color: var(--gold); letter-spacing: .5px;
+}
+.valores-list { display: flex; flex-direction: column; gap: 2px; }
+.valor-item {
+  display: flex; gap: 20px; align-items: flex-start;
+  background: var(--white); padding: 28px;
+  border: 1px solid var(--sand);
+  transition: background .2s;
+}
+.valor-item:hover { background: rgba(193,154,82,.05); }
+.valor-icon {
+  font-size: 22px; flex-shrink: 0;
+  width: 46px; height: 46px;
+  background: var(--warm); border: 1px solid var(--sand);
+  display: flex; align-items: center; justify-content: center;
+}
+.valor-text strong { display: block; font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+.valor-text span { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+/* ══ NÚMEROS ══ */
+.numeros { padding: 120px 64px; border-top: 1px solid var(--sand); }
+.numeros-head { text-align: center; margin-bottom: 72px; }
+.numeros-head .label { display: block; margin-bottom: 14px; }
+.numeros-head h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 4vw, 54px);
+  font-weight: 600; line-height: 1.1; color: var(--ink);
+}
+.numeros-head h2 em { font-style: italic; color: var(--gold); }
+.numeros-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 2px; background: var(--sand);
+}
+.numero-card {
+  background: var(--white); padding: 48px 36px;
+  text-align: center; transition: background .3s;
+}
+.numero-card:hover { background: var(--warm); }
+.numero-icon { font-size: 32px; margin-bottom: 20px; }
+.numero-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px; font-weight: 700; line-height: 1; color: var(--gold);
+}
+.numero-label { font-size: 14px; color: var(--muted); margin-top: 10px; line-height: 1.5; }
+
+/* ══ CTA ══ */
+.cta {
+  padding: 120px 64px;
+  background: var(--ink); text-align: center;
+}
+.cta .label { color: var(--gold); display: block; margin-bottom: 20px; }
+.cta h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(38px, 4.5vw, 64px);
+  font-weight: 600; color: var(--white);
+  line-height: 1.05; max-width: 600px; margin: 0 auto;
+}
+.cta h2 em { font-style: italic; color: var(--gold); }
+.cta p {
+  margin: 24px auto 0; font-size: 17px; line-height: 1.75;
+  color: rgba(253,252,250,.55); max-width: 480px;
+}
+.cta-actions { display: flex; gap: 14px; justify-content: center; margin-top: 48px; flex-wrap: wrap; }
+.btn-gold {
+  background: var(--gold); color: var(--white);
+  padding: 15px 34px; border-radius: 2px;
+  font-size: 14px; font-weight: 600; letter-spacing: .3px;
+  transition: background .25s, transform .2s;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-gold:hover { background: var(--gold-d); transform: translateY(-2px); }
+.btn-outline-light {
+  background: none; border: 1px solid rgba(255,255,255,.2);
+  color: rgba(253,252,250,.75); padding: 15px 34px; border-radius: 2px;
+  font-size: 14px; font-weight: 500;
+  transition: border-color .25s, color .25s;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-outline-light:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ══ FOOTER ══ */
+footer {
+  background: var(--ink); color: rgba(253,252,250,.5);
+  padding: 80px 64px 40px;
+  border-top: 1px solid rgba(255,255,255,.05);
+}
+.footer-top {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr;
+  gap: 64px; padding-bottom: 64px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  margin-bottom: 40px;
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-weight: 700; color: #fdfcfa; margin-bottom: 16px;
+}
+.footer-logo sup { font-size: 13px; color: var(--gold); }
+.footer-tagline { font-size: 14px; line-height: 1.7; max-width: 240px; }
+.footer-col h4 {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold); font-weight: 600; margin-bottom: 20px;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 12px; }
+.footer-col ul li a { color: rgba(253,252,250,.5); font-size: 14px; transition: color .2s; }
+.footer-col ul li a:hover { color: #fdfcfa; }
+.footer-col p { font-size: 14px; line-height: 1.8; }
+.footer-col a { color: rgba(253,252,250,.5); transition: color .2s; }
+.footer-col a:hover { color: #fdfcfa; }
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 12px; color: rgba(253,252,250,.3);
+}
+.footer-socials { display: flex; gap: 12px; }
+.social-btn {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.12);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(253,252,250,.4); font-size: 13px; font-weight: 600; transition: all .2s;
+}
+.social-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ══ FLOAT WPP ══ */
+.float-wpp {
+  position: fixed; bottom: 32px; right: 32px; z-index: 300;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #25D366; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 24px rgba(37,211,102,.4);
+  transition: transform .25s, box-shadow .25s;
+}
+.float-wpp:hover { transform: scale(1.1); }
+.float-wpp svg { width: 28px; height: 28px; fill: #fff; }
+
+@keyframes up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 960px) {
+  .nav { padding: 0 24px; }
+  .nav-menu { display: none; }
+  .page-hero { padding: 0 24px 56px; min-height: 360px; }
+  .about-intro { grid-template-columns: 1fr; padding: 72px 24px; gap: 64px; }
+  .about-photo-wrap::before { display: none; }
+  .photo-badge { right: 0; bottom: -12px; }
+  .pilares { padding: 72px 24px; }
+  .pilares-grid { grid-template-columns: 1fr; }
+  .missao { grid-template-columns: 1fr; padding: 72px 24px; gap: 56px; }
+  .numeros { padding: 72px 24px; }
+  .numeros-grid { grid-template-columns: 1fr 1fr; }
+  .cta { padding: 72px 24px; }
+  footer { padding: 60px 24px 32px; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+}
+@media (max-width: 560px) {
+  .numeros-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<a href="https://wa.me/5579991373093" class="float-wpp" title="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo">JM Edifica<sup>ções</sup></a>
+  <ul class="nav-menu">
+    <li><a href="index.html">Início</a></li>
+    <li><a href="portfolio.html">Portfólio</a></li>
+    <li><a href="sobre.html" class="active">Sobre</a></li>
+    <li><a href="servicos.html">Serviços</a></li>
+    <li><a href="contato.html">Contato</a></li>
+    <li>
+      <a href="https://wa.me/5579991373093" class="nav-wpp">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-bg">
+    <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1400&q=80" alt="Engenharia civil">
+  </div>
+  <div class="page-hero-content">
+    <p class="page-hero-bread"><a href="index.html">Início</a> &nbsp;/&nbsp; Sobre</p>
+    <h1>Planejamento,<br><em>Técnica</em> e<br>Compromisso.</h1>
+    <p class="page-hero-sub">Conheça a história e os valores por trás da JM Edificações — engenharia civil com atendimento humano e resultado de verdade.</p>
+  </div>
+</section>
+
+<section class="about-intro reveal">
+  <div class="about-photo-wrap">
+    <div class="about-photo">
+      <img src="https://static.wixstatic.com/media/b1bbd7_30b5972d290a48bea7d0feacd7777bc0~mv2.jpg/v1/fill/w_459,h_441,al_c,q_80,enc_avif,quality_auto/Gemini_Generated_Image_r029dcr029dcr029_edited.jpg" alt="Jonas de Matos Moreira">
+    </div>
+    <div class="photo-badge">
+      <div class="badge-num">8+</div>
+      <div class="badge-label">Projetos entregues</div>
+    </div>
+  </div>
+  <div class="about-content">
+    <span class="label">Quem somos</span>
+    <h2>A JM nasceu de<br>uma <em>paixão</em></h2>
+    <div class="about-text">
+      <p>A JM Edificações nasceu da paixão por transformar projetos em realidade. Fundada por Jonas de Matos Moreira, Técnico em Edificações, a empresa é guiada por três pilares essenciais: Planejamento, Técnica e Compromisso.</p>
+      <p>Com sede em Aracaju — SE, atuamos com a missão de oferecer soluções inteligentes e seguras. Nossa expertise abrange desde elaboração de plantas baixas e projetos elétricos e hidrossanitários até o acompanhamento de reformas e emissão de laudos técnicos.</p>
+      <p>Cada projeto é único e, por isso, dedicamos atenção personalizada a cada detalhe. Na JM Edificações, <strong>seu sonho é o nosso projeto.</strong></p>
+    </div>
+    <div class="name-card">
+      <div class="name-avatar">J</div>
+      <div class="name-info">
+        <strong>Jonas de Matos Moreira</strong>
+        <span>Fundador · Técnico em Edificações · Aracaju, SE</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pilares reveal">
+  <div class="pilares-head">
+    <span class="label">Nossa base</span>
+    <h2>Os três pilares da <em>JM Edificações</em></h2>
+  </div>
+  <div class="pilares-grid">
+    <div class="pilar-card">
+      <div class="pilar-num-bg">01</div>
+      <div class="pilar-icon">📋</div>
+      <div class="pilar-title"><span>Planejamento</span></div>
+      <p class="pilar-desc">Cada projeto começa com planejamento cuidadoso. Estudamos necessidade, prazo e orçamento antes de qualquer execução — para que nada saia do esperado.</p>
+    </div>
+    <div class="pilar-card">
+      <div class="pilar-num-bg">02</div>
+      <div class="pilar-icon">📐</div>
+      <div class="pilar-title"><span>Técnica</span></div>
+      <p class="pilar-desc">Formação técnica sólida aplicada no dia a dia. Utilizamos as melhores práticas de engenharia civil para garantir segurança, durabilidade e precisão.</p>
+    </div>
+    <div class="pilar-card">
+      <div class="pilar-num-bg">03</div>
+      <div class="pilar-icon">🤝</div>
+      <div class="pilar-title"><span>Compromisso</span></div>
+      <p class="pilar-desc">Palavra dada é palavra cumprida. Prazos, qualidade e transparência do orçamento à entrega — você sabe exatamente o que está acontecendo.</p>
+    </div>
+  </div>
+</section>
+
+<section class="missao reveal">
+  <div class="missao-left">
+    <span class="label">Nossa missão</span>
+    <h2>Construir com <em>propósito</em></h2>
+    <p>Nossa missão é oferecer soluções de engenharia civil com qualidade técnica, atendimento próximo e total transparência. Cada cliente deve sentir segurança durante todo o processo.</p>
+    <p style="margin-top:18px;">Acreditamos que uma boa obra começa com uma boa conversa. Por isso, ouvimos antes de agir e acompanhamos até o final.</p>
+    <blockquote>
+      "Seu sonho é o nosso projeto."
+      <cite>— Jonas de Matos Moreira, fundador</cite>
+    </blockquote>
+  </div>
+  <div>
+    <span class="label" style="display:block;margin-bottom:20px;">Nossos valores</span>
+    <div class="valores-list">
+      <div class="valor-item">
+        <div class="valor-icon">🔍</div>
+        <div class="valor-text">
+          <strong>Transparência total</strong>
+          <span>Você sabe o que está pagando e por quê. Sem surpresas no orçamento nem na execução.</span>
+        </div>
+      </div>
+      <div class="valor-item">
+        <div class="valor-icon">👤</div>
+        <div class="valor-text">
+          <strong>Atendimento personalizado</strong>
+          <span>Você fala diretamente com o responsável técnico. Sem intermediários.</span>
+        </div>
+      </div>
+      <div class="valor-item">
+        <div class="valor-icon">⏱️</div>
+        <div class="valor-text">
+          <strong>Respeito ao prazo</strong>
+          <span>Combinamos uma data e cumprimos. Atrasos só com comunicação prévia.</span>
+        </div>
+      </div>
+      <div class="valor-item">
+        <div class="valor-icon">🏆</div>
+        <div class="valor-text">
+          <strong>Qualidade sem concessão</strong>
+          <span>Materiais adequados, técnica correta e acabamento caprichado em todos os serviços.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="numeros reveal">
+  <div class="numeros-head">
+    <span class="label">Em números</span>
+    <h2>Por que escolher a <em>JM Edificações?</em></h2>
+  </div>
+  <div class="numeros-grid">
+    <div class="numero-card">
+      <div class="numero-icon">🏠</div>
+      <div class="numero-val">8+</div>
+      <div class="numero-label">Projetos concluídos em Aracaju e região</div>
+    </div>
+    <div class="numero-card">
+      <div class="numero-icon">⭐</div>
+      <div class="numero-val">100%</div>
+      <div class="numero-label">Clientes satisfeitos com o atendimento</div>
+    </div>
+    <div class="numero-card">
+      <div class="numero-icon">📍</div>
+      <div class="numero-val">SE</div>
+      <div class="numero-label">Atuação em toda Aracaju e região sergipana</div>
+    </div>
+    <div class="numero-card">
+      <div class="numero-icon">💬</div>
+      <div class="numero-val">0</div>
+      <div class="numero-label">Surpresas no orçamento. Transparência total</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta reveal">
+  <span class="label">Vamos trabalhar juntos?</span>
+  <h2>Conte comigo para<br>construir com <em>confiança</em></h2>
+  <p>Me manda uma mensagem, explico como posso te ajudar e já te dou um orçamento gratuito e sem compromisso.</p>
+  <div class="cta-actions">
+    <a href="https://wa.me/5579991373093" class="btn-gold">Solicitar Orçamento →</a>
+    <a href="portfolio.html" class="btn-outline-light">Ver Portfólio</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">JM Edifica<sup>ções</sup></div>
+      <p class="footer-tagline">Engenharia civil com planejamento técnico e compromisso. Aracaju e região.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegação</h4>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="portfolio.html">Portfólio</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="servicos.html">Serviços</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Serviços</h4>
+      <ul>
+        <li><a href="servicos.html">Projetos Residenciais</a></li>
+        <li><a href="servicos.html">Hidráulica</a></li>
+        <li><a href="servicos.html">Impermeabilização</a></li>
+        <li><a href="servicos.html">Instalações Elétricas</a></li>
+        <li><a href="servicos.html">Laudos Técnicos</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <p>
+        <a href="tel:+5579991373093">(79) 99137-3093</a><br>
+        <a href="mailto:jmedf.contato@gmail.com">jmedf.contato@gmail.com</a><br><br>
+        Seg–Sex: 8h às 18h<br>
+        Sáb–Dom: 9h às 13h
+      </p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 JM Edificações. Todos os direitos reservados.</span>
+    <div class="footer-socials">
+      <a href="https://www.facebook.com/profile.php?id=61582820973803" class="social-btn" title="Facebook">f</a>
+      <a href="#" class="social-btn" title="Instagram">ig</a>
+      <a href="https://wa.me/5579991373093" class="social-btn" title="WhatsApp">w</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+});
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
