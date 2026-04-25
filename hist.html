@@ -1,0 +1,487 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>Nome</title>
+	<link href="https://unpkg.com/tabulator-tables@4.9.3/dist/css/tabulator.min.css" rel="stylesheet">
+	<script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.9.3/dist/js/tabulator.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/he/1.2.0/he.min.js" integrity="sha512-PEsccDx9jqX6Dh4wZDCnWMaIO3gAaU0j46W//sSqQhUQxky6/eHZyeB3NrXD2xsyugAKd4KPiDANkcuoEa2JuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<link rel="manifest" href="manifest.webmanifest">
+	<meta name="viewport" content="width=device-width, initial-scale=0.5">
+	<style>
+h2:after,
+.cards .card:after {
+  position: absolute;
+}
+
+h2,
+h2 strong,
+.cards .card
+{
+  position: relative;
+}
+
+h2,
+h2 strong,
+h2 span {
+  vertical-align: middle;
+}
+
+body {
+  background: #24282f;
+  font-family: 'Arial';
+  color: #ccc;
+  font-size: 16px
+}
+
+.wrapper {
+  padding: 15px;
+}
+
+h2 {
+  padding: 10px;
+  padding-left: 25px;
+  color: #ccc;
+  margin: 0;
+  cursor:pointer;
+}
+
+h2 strong {
+  z-index: 2;
+  background: #24282f;
+  padding: 4px 8px;
+}
+
+h2 span {
+  font-size: 0.7em;
+  color: #aaa;
+  margin-left: 10px;
+}
+
+h2:after {
+  content: '';
+  z-index: 1;
+  bottom: 50%;
+  margin-bottom: -2px;
+  height: 2px;
+  left: 0;
+  right: 0;
+  background: #373d47;
+}
+
+.quicklinks {
+  display: flex;
+  flex-flow: row wrap;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.quicklink {
+  margin: 10px;
+}
+
+/* link no underline */
+a {
+  text-decoration: none;
+}
+
+/* unvisited link */
+a:link {
+  color: #CCC;
+}
+/* visited link */
+a:visited {
+  color: #CCC;
+}
+/* mouse over link */
+a:hover {
+  color: #EEE;
+}
+/* selected link */
+a:active {
+  color: #CCC;
+}
+
+.Menu {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.MenuButton {
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: #555;/* Set a background color */
+  color: #ccc; /* Text color */
+  padding: 5px; /* Some padding */
+  border-radius: 4px; /* Rounded corners */
+  font-size: 20px;/* Increase font size */
+  margin-top: 10px;
+  margin-left: 15px;
+  cursor:pointer;
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #666; /* Add a dark-grey background on hover */
+  color: #eee; /* Text color */
+}
+	                                                   /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+#gamestable {
+  width: 100%;
+}
+
+.filter-controls {
+	margin-bottom: 7px;
+}
+  </style>
+  </head>
+  <body>
+    <div class="wrapper" id="wrapper">
+      <h2><strong>MENU PRINCIPAL - Nome<span>(Nome ascendente / Nome ascendente)</span></strong></h2>
+	  <div class="Menu"><a Class="MenuButton" href="index.html">Nome ▲</A><a Class="MenuButton" href="default%20list%20text_source_ascendente_name_ascendente.html">Fonte ▲</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_library_ascendente_name_ascendente.html">Biblioteca ▲</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_platform_ascendente_name_ascendente.html">Plataforma ▲</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_releaseyear_descendente_name_ascendente.html">Ano de Lan&#231;amento ▼</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_agerating_ascendente_name_ascendente.html">Classifica&#231;&#227;o Indicativa ▲</A><a Class="MenuButton" href="default%20list%20text_favorite_ascendente_name_ascendente.html">Favorito ▲</A><a Class="MenuButton" href="default%20list%20text_lastactivitysegment_ascendente_name_ascendente.html">&#218;ltimo Segmento da Atividade ▲</A><a Class="MenuButton" href="default%20list%20text_playtimecategory_ascendente_name_ascendente.html">Categoria de Tempo de Jogo ▲</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_region_ascendente_name_ascendente.html">Regi&#227;o ▲</A><a Class="MenuButton" href="default%20list%20text_completionstatus_ascendente_name_ascendente.html">Status de Conclus&#227;o ▲</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_userscore_descendente_name_ascendente.html">Pontua&#231;&#227;o do Usu&#225;rio ▼</A><a Class="MenuButton" href="default%20list%20text_userscoregroup_ascendente_name_ascendente.html">Grupo Pontua&#231;&#227;o do Usu&#225;rio ▲</A><a Class="MenuButton" href="default%20list%20text_userscorerating_ascendente_name_ascendente.html">Avalia&#231;&#227;o da Pontua&#231;&#227;o do Usu&#225;rio ▲</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_communityscore_descendente_name_ascendente.html">Pontua&#231;&#227;o da Comunidade ▼</A><a Class="MenuButton" href="default%20list%20text_communityscoregroup_ascendente_name_ascendente.html">Grupo de Avalia&#231;&#227;o da Comunidade ▲</A><a Class="MenuButton" href="default%20list%20text_communityscorerating_ascendente_name_ascendente.html">Avalia&#231;&#227;o de Pontua&#231;&#227;o da Comunidade ▲</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html">Avalia&#231;&#227;o da cr&#237;tica ▼</A><a Class="MenuButton" href="default%20list%20text_criticscoregroup_ascendente_name_ascendente.html">Grupo de Pontua&#231;&#227;o Cr&#237;tica ▲</A><a Class="MenuButton" href="default%20list%20text_criticscorerating_ascendente_name_ascendente.html">Classifica&#231;&#227;o da Pontua&#231;&#227;o Cr&#237;tica ▲</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_category_ascendente_name_ascendente.html">Categoria ▲</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_genre_ascendente_name_ascendente.html">G&#234;nero ▲</A><a Class="MenuButton" href="default%20list%20text_addedsegment_ascendente_name_ascendente.html">Segmento Adicionado ▲</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_developer_ascendente_name_ascendente.html">Desenvolvedor ▲</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_feature_ascendente_name_ascendente.html">Fun&#231;&#245;es ▲</A><a Class="MenuButton" href="default%20list%20text_installationstatus_ascendente_name_ascendente.html">Status da Instala&#231;&#227;o ▲</A><a Class="MenuButton" href="default%20list%20text_iscustomgame_ascendente_name_ascendente.html">Jogo Personalizado ▲</A><a Class="MenuButton" href="default%20list%20text_modifiedsegment_ascendente_name_ascendente.html">Segmento modificado ▲</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_playcount_descendente_name_ascendente.html">Vezes Jogadas ▼</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_publisher_ascendente_name_ascendente.html">Editor ▲</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_serie_ascendente_name_ascendente.html">S&#233;rie ▲</A><a Class="MenuButton" href="default%20list%20text_hidden_ascendente_name_ascendente.html">Oculto ▲</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_added_descendente_name_ascendente.html">Adicionado ▼</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_lastactivity_descendente_name_ascendente.html">&#218;ltima Atividade ▼</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_modified_descendente_name_ascendente.html">Modificado ▼</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html">Data de Lan&#231;amento ▼</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_playtime_descendente_name_ascendente.html">Tempo de jogo ▼</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_tag_ascendente_name_ascendente.html">Tag ▲</A></div>
+	  <h2></h2>
+	  <div class="filter-controls">
+		<span>
+			<B>Nome come&#231;a com:</B>
+		    <select id="filter-quickfield" onchange="applyQuickField();"><option></option><option value="#"># (4)</option><option value="A">A (6)</option><option value="B">B (8)</option><option value="C">C (8)</option><option value="D">D (5)</option><option value="E">E (1)</option><option value="F">F (6)</option><option value="G">G (4)</option><option value="H">H (9)</option><option value="I">I (1)</option><option value="J">J (1)</option><option value="L">L (4)</option><option value="M">M (6)</option><option value="N">N (3)</option><option value="O">O (4)</option><option value="P">P (13)</option><option value="R">R (1)</option><option value="S">S (16)</option><option value="T">T (12)</option><option value="U">U (6)</option><option value="V">V (2)</option><option value="W">W (1)</option></select>
+		</span>
+	  </div>
+	  <div class="filter-controls">
+		<span>
+		  <B>Campo </B>
+		  <select id="filter-field">
+			<option></option>
+			<option value="name">Nome</option>
+			<option value="data">Nome</option>
+			<option value="lastactivity">Última Atividade</option>
+			<option value="addeddate">Adicionado</option>
+			<option value="playtime">Tempo de jogo</option>
+			<option value="source">Fonte</option>
+			<option value="platform">Plataforma</option>
+		  </select>
+		</span>
+
+		<span><B>cont&#233;m </B><input id="filter-value" type="text" placeholder="valor para filtrar"></span>
+
+		<button id="filter-clear">Limpar filtro</button>
+	  </div>
+	  <div id="gamestable"></div>
+    </div>
+	
+	<script>
+
+	var tabledata = [		
+ 	{coverimage:"", icon:"", id:1, name:"2020 Super Baseball", data:"2020 Super Baseball", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"1m 12s", source:"", platform:"Nintendo SNES", gamefile:"0f41bd45-ee38-4de2-a381-5a1fd41ff52c.html"},
+{coverimage:"33712177-cbc9-4b8c-b080-380307872967/b0816d17-d305-42d8-be04-d92aef7af19e.jpg", icon:"", id:2, name:"3 Ninjas Kick Back", data:"3 Ninjas Kick Back", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"3m 30s", source:"", platform:"Nintendo SNES", gamefile:"33712177-cbc9-4b8c-b080-380307872967.html"},
+{coverimage:"da53c7c1-ccf9-4590-9882-c8487f0b5279/670c208b-8413-4ddc-a89c-df81217edaea.jpg", icon:"", id:3, name:"7th Saga, The", data:"7th Saga, The", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"9m 41s", source:"", platform:"Nintendo SNES", gamefile:"da53c7c1-ccf9-4590-9882-c8487f0b5279.html"},
+{coverimage:"5d0486ee-dadb-414c-99ff-0d837d95ccdc/6a374d68-8031-4a91-855b-43eed8120e76.jpg", icon:"", id:4, name:"90 Minutes - European Prime Goal", data:"90 Minutes - European Prime Goal", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"58m 16s", source:"", platform:"Nintendo SNES", gamefile:"5d0486ee-dadb-414c-99ff-0d837d95ccdc.html"},
+{coverimage:"6d139397-1092-40a7-914b-6b324105d65d/4b90a60d-4578-4337-af36-715933c5f4e1.jpg", icon:"6d139397-1092-40a7-914b-6b324105d65d/522c63da-3c8b-44fb-ad1f-fd404962e18a.png", id:5, name:"A Short Hike", data:"A Short Hike", lastactivity:"No &#250;ltimo Ano", addeddate:"20/11/2025", playtime:"17h 31m 58s", source:"GOG", platform:"PC (Windows)", gamefile:"6d139397-1092-40a7-914b-6b324105d65d.html"},
+{coverimage:"d55b1131-3d80-4100-83fd-94799188fae6/103eb131-a332-4572-bc91-2c3a53d36646.jpg", icon:"", id:6, name:"A.S.P. - Air Strike Patrol", data:"A.S.P. - Air Strike Patrol", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"1m 55s", source:"", platform:"Nintendo SNES", gamefile:"d55b1131-3d80-4100-83fd-94799188fae6.html"},
+{coverimage:"09c312ab-e6eb-4bb7-a90c-adc2ab7090c2/8f1343f4-34aa-4898-bbc1-9d06102636eb.jpg", icon:"", id:7, name:"ABC Monday Night Football", data:"ABC Monday Night Football", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"34s", source:"", platform:"Nintendo SNES", gamefile:"09c312ab-e6eb-4bb7-a90c-adc2ab7090c2.html"},
+{coverimage:"07f78264-11d1-4ae8-896f-9cb442bbc25d/24957908-201b-44d1-8225-ed2a74173079.jpg", icon:"", id:8, name:"Aladdin", data:"Aladdin", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"2m 12s", source:"", platform:"Nintendo SNES", gamefile:"07f78264-11d1-4ae8-896f-9cb442bbc25d.html"},
+{coverimage:"0d51a1a6-7ca3-44d7-92ff-7a1bd9051e90/e841c164-8c5b-4e0e-8ad5-3fc0ae5bc241.jpg", icon:"0d51a1a6-7ca3-44d7-92ff-7a1bd9051e90/3181fad5-b606-4126-829b-1331144962d6.png", id:9, name:"Another Crab&#39;s Treasure", data:"Another Crab&#39;s Treasure", lastactivity:"H&#225; mais de um ano", addeddate:"20/11/2025", playtime:"N&#227;o Jogado", source:"Hydra", platform:"PC (Windows)", gamefile:"0d51a1a6-7ca3-44d7-92ff-7a1bd9051e90.html"},
+{coverimage:"ff3f14e2-85a5-4267-97ca-cba4ed660455/745f364f-f30a-4d11-acf8-d0c57ea01246.jpg", icon:"ff3f14e2-85a5-4267-97ca-cba4ed660455/c3ad8f08-6bf7-4332-bb7e-ea1b222fc9fa.ico", id:10, name:"Astro Duel 2", data:"Astro Duel 2", lastactivity:"No &#250;ltimo Ano", addeddate:"30/01/2025", playtime:"3h 42m 52s", source:"Epic", platform:"PC (Windows)", gamefile:"ff3f14e2-85a5-4267-97ca-cba4ed660455.html"},
+{coverimage:"12aa7c86-b0c9-4880-b804-8b385b7a24a0/a2afa7fe-8bbe-46b7-8b00-246e1b0f5470.jpg", icon:"12aa7c86-b0c9-4880-b804-8b385b7a24a0/3d7d35cf-0601-4f51-8586-a495cd079380.png", id:11, name:"Baba Is You", data:"Baba Is You", lastactivity:"No &#250;ltimo M&#234;s", addeddate:"16/11/2025", playtime:"2h 43m 27s", source:"", platform:"PC (Windows)", gamefile:"12aa7c86-b0c9-4880-b804-8b385b7a24a0.html"},
+{coverimage:"e923b3df-4e50-4021-8698-b8f0a5a1690d/b8e3404d-be68-478e-a4bb-5470a52a3382.jpg", icon:"", id:12, name:"Ballz 3D - Fighting at Its Ballziest", data:"Ballz 3D - Fighting at Its Ballziest", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"3m 7s", source:"", platform:"Nintendo SNES", gamefile:"e923b3df-4e50-4021-8698-b8f0a5a1690d.html"},
+{coverimage:"ae8c5ddf-6a3b-43f2-b8b8-ff0faab46eaf/b476596d-8923-4b65-9014-3b19a6948173.jpg", icon:"", id:13, name:"Battle Robot Retsuden", data:"Battle Robot Retsuden", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"N&#227;o Jogado", source:"", platform:"Nintendo SNES", gamefile:"ae8c5ddf-6a3b-43f2-b8b8-ff0faab46eaf.html"},
+{coverimage:"7ac7a572-5105-4178-a4c6-d5ff6859bc56/419ee8dd-82d8-445e-93b5-2869beb0bac5.jpg", icon:"7ac7a572-5105-4178-a4c6-d5ff6859bc56/1b731d1c-2c90-405d-884b-d4dd14353561.png", id:14, name:"Bluey: The Videogame", data:"Bluey: The Videogame", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"50m 50s", source:"Hydra", platform:"PC (Windows)", gamefile:"7ac7a572-5105-4178-a4c6-d5ff6859bc56.html"},
+{coverimage:"28d945ab-04ec-45f3-9322-a07d6bec81a5/2f37797a-bb04-49ab-806a-4ad90a17e7d4.jpg", icon:"", id:15, name:"Bomberman B-Daman", data:"Bomberman B-Daman", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"7m 22s", source:"", platform:"Nintendo SNES", gamefile:"28d945ab-04ec-45f3-9322-a07d6bec81a5.html"},
+{coverimage:"9242926b-b044-40ea-8cb5-c48f46a5c205/ace37792-b9fa-4683-a6dc-7d792bca6326.jpg", icon:"9242926b-b044-40ea-8cb5-c48f46a5c205/aebda468-09e5-45f1-9236-407998b3e695.png", id:16, name:"Boomerang Fu", data:"Boomerang Fu", lastactivity:"No &#250;ltimo Ano", addeddate:"18/10/2025", playtime:"10h 11m 37s", source:"", platform:"PC (Windows)", gamefile:"9242926b-b044-40ea-8cb5-c48f46a5c205.html"},
+{coverimage:"3112737b-2b19-451f-8f9f-af1ec29bc7f3/fdad5300-8bb6-424f-a891-7acdb4473aad", icon:"3112737b-2b19-451f-8f9f-af1ec29bc7f3/a8fe5029-37ef-4d5e-b50c-e7ada5ff08f3.png", id:17, name:"Bopl Battle", data:"Bopl Battle", lastactivity:"Na &#250;ltima Semana", addeddate:"15/11/2025", playtime:"4d 3h 52m 10s", source:"Hydra", platform:"PC (Windows)", gamefile:"3112737b-2b19-451f-8f9f-af1ec29bc7f3.html"},
+{coverimage:"49f0249a-ef8b-4c3d-a922-23f49b437820/95e44d75-ad0a-4eb4-ad65-f7684ace55f2.jpg", icon:"49f0249a-ef8b-4c3d-a922-23f49b437820/c1d6aa88-6cb1-485c-b5cc-cf20c9eea457.png", id:18, name:"Brain Show", data:"Brain Show", lastactivity:"No &#250;ltimo Ano", addeddate:"18/10/2025", playtime:"4m 58s", source:"", platform:"PC (Windows)", gamefile:"49f0249a-ef8b-4c3d-a922-23f49b437820.html"},
+{coverimage:"4e5b9e8a-9026-4027-8c12-c7cd59741249/a0417c4e-fa20-48cc-b6ec-bea3f3603136.jpg", icon:"4e5b9e8a-9026-4027-8c12-c7cd59741249/8b3c22b6-7f24-448c-b8fa-98efd8286b58.png", id:19, name:"Cake Bash", data:"Cake Bash", lastactivity:"No &#250;ltimo Ano", addeddate:"18/10/2025", playtime:"2h 13m 1s", source:"", platform:"PC (Windows)", gamefile:"4e5b9e8a-9026-4027-8c12-c7cd59741249.html"},
+{coverimage:"06e34970-64cd-45db-9ff6-34a7f3e9c749/5cc1a81e-3dd9-44c9-8ea8-d369d27aa977.jpg", icon:"06e34970-64cd-45db-9ff6-34a7f3e9c749/1c76bfca-2f5e-4d01-8201-8c6a7668725f.png", id:20, name:"Carrion", data:"Carrion", lastactivity:"No &#250;ltimo Ano", addeddate:"12/11/2025", playtime:"16s", source:"", platform:"PC (Windows)", gamefile:"06e34970-64cd-45db-9ff6-34a7f3e9c749.html"},
+{coverimage:"880c1754-b865-4dcf-92fe-fc3ef325d1bd/528808c5-4071-43c0-9587-96cda9c14218.jpg", icon:"880c1754-b865-4dcf-92fe-fc3ef325d1bd/360266dd-25cd-4f9c-8aa0-ac8ac9165609.png", id:21, name:"Castle Crashers", data:"Castle Crashers", lastactivity:"No &#250;ltimo M&#234;s", addeddate:"18/10/2025", playtime:"1d 6h 29m 3s", source:"", platform:"PC (Windows)", gamefile:"880c1754-b865-4dcf-92fe-fc3ef325d1bd.html"},
+{coverimage:"7f6df29f-bbcf-490d-b495-5295b8a21ed1/6e40ffef-92b9-41de-b170-28516a912aee.jpg", icon:"7f6df29f-bbcf-490d-b495-5295b8a21ed1/c6e42ea4-a469-485e-8987-9144e53549f8.png", id:22, name:"Celeste", data:"Celeste", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"1m 40s", source:"Hydra", platform:"PC (Windows)", gamefile:"7f6df29f-bbcf-490d-b495-5295b8a21ed1.html"},
+{coverimage:"12f4bf7a-23ab-4f7c-abe5-64dabc822b81/0608f21a-fb4f-45e7-afac-a02b41e45dd5.jpg", icon:"", id:23, name:"Crash Bandicoot", data:"Crash Bandicoot", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"40m 9s", source:"", platform:"Sony PlayStation", gamefile:"12f4bf7a-23ab-4f7c-abe5-64dabc822b81.html"},
+{coverimage:"23e70957-d259-4409-b9ea-4d521598cc10/554ea4c5-0cc1-4f74-89a7-e88fbee32682.jpg", icon:"23e70957-d259-4409-b9ea-4d521598cc10/fc8e08cf-3c4f-4c29-98d0-6eb08f7163f4.png", id:24, name:"Crow Country", data:"Crow Country", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"1m 40s", source:"Hydra", platform:"PC (Windows)", gamefile:"23e70957-d259-4409-b9ea-4d521598cc10.html"},
+{coverimage:"ec3c3c80-06fc-4eaa-9f4a-6ca185a024a2/2697867d-4cc1-4c74-b199-9f588edb0e5d.jpg", icon:"ec3c3c80-06fc-4eaa-9f4a-6ca185a024a2/4cf5bb06-4fdc-4edb-902b-a05a4fcdac8c.ico", id:25, name:"Cult of the Lamb", data:"Cult of the Lamb", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"1m 51s", source:"", platform:"PC (Windows)", gamefile:"ec3c3c80-06fc-4eaa-9f4a-6ca185a024a2.html"},
+{coverimage:"1d19bdbc-d1e4-4e8b-8df8-bb547bd8e9f5/ba43bd6f-0e3b-4960-8f1d-6791af39f895.jpg", icon:"1d19bdbc-d1e4-4e8b-8df8-bb547bd8e9f5/116b069f-4b45-4531-92d8-fe204de5915c.jpg", id:26, name:"Cuphead", data:"Cuphead", lastactivity:"No &#250;ltimo Ano", addeddate:"20/11/2025", playtime:"1m 40s", source:"Hydra", platform:"PC (Windows)", gamefile:"1d19bdbc-d1e4-4e8b-8df8-bb547bd8e9f5.html"},
+{coverimage:"a1668537-0cf5-4a55-89da-f9b61f727978/ecfbc09f-7d5e-4f51-9613-8007d731264d.jpg", icon:"a1668537-0cf5-4a55-89da-f9b61f727978/3ab9e9a8-5534-4c1c-8a87-8cfea6d2c34b.png", id:27, name:"Dave the Diver", data:"Dave the Diver", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"1m 40s", source:"", platform:"PC (Windows)", gamefile:"a1668537-0cf5-4a55-89da-f9b61f727978.html"},
+{coverimage:"7f15e507-7304-4dca-9036-254c86da9715/8cef3b97-7016-4e0d-87b6-78a4c5223605.jpg", icon:"7f15e507-7304-4dca-9036-254c86da9715/032d19e8-f6fa-481a-9e1e-47265c0860f1.png", id:28, name:"Dispatch", data:"Dispatch", lastactivity:"No &#250;ltimo Ano", addeddate:"07/12/2025", playtime:"21m 27s", source:"", platform:"PC (Windows)", gamefile:"7f15e507-7304-4dca-9036-254c86da9715.html"},
+{coverimage:"f76d16be-527d-4924-890f-d2acfee57396/e0d4080a-587f-442f-ac7a-f0bce54f1a82.jpg", icon:"f76d16be-527d-4924-890f-d2acfee57396/2c758b4d-5946-463a-bc94-727cf58974b2.png", id:29, name:"Don&#39;t Starve Together", data:"Don&#39;t Starve Together", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"N&#227;o Jogado", source:"", platform:"PC (Windows)", gamefile:"f76d16be-527d-4924-890f-d2acfee57396.html"},
+{coverimage:"c9a4dbb5-0b9c-4fe7-9fb2-42486ba01a2b/eefcd9e5-c5d4-4102-93a5-58dc2db12d5b.jpg", icon:"c9a4dbb5-0b9c-4fe7-9fb2-42486ba01a2b/b0699852-b997-4544-a1b4-cae83f967048.png", id:30, name:"Donut County", data:"Donut County", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"1m 40s", source:"", platform:"PC (Windows)", gamefile:"c9a4dbb5-0b9c-4fe7-9fb2-42486ba01a2b.html"},
+{coverimage:"91fd0dd5-562e-448c-baec-6f1dad047785/47edf471-b05c-46e0-88c9-1e69c8e97bc5.jpg", icon:"91fd0dd5-562e-448c-baec-6f1dad047785/724f558c-900b-44da-a26c-5007e1673eb3.png", id:31, name:"Dredge", data:"Dredge", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"1m 40s", source:"Hydra", platform:"PC (Windows)", gamefile:"91fd0dd5-562e-448c-baec-6f1dad047785.html"},
+{coverimage:"2995d051-9990-483f-8574-5a42fd04d320/072269eb-bca5-4f1f-bc06-8091796a6b48.jpg", icon:"2995d051-9990-483f-8574-5a42fd04d320/c587e250-7ff6-48a0-a727-32d6d8411e51.png", id:32, name:"Euro Truck Simulator 2", data:"Euro Truck Simulator 2", lastactivity:"No &#250;ltimo Ano", addeddate:"22/11/2025", playtime:"2h 43m 44s", source:"", platform:"PC (Windows)", gamefile:"2995d051-9990-483f-8574-5a42fd04d320.html"},
+{coverimage:"db3f67b1-460b-43ad-b44c-f4ca3dc85d81/d59a6576-c740-4584-973d-1c7d746278cc.jpg", icon:"db3f67b1-460b-43ad-b44c-f4ca3dc85d81/56465cb3-b363-48ef-aca4-01dcbf0daa36.png", id:33, name:"Factorio", data:"Factorio", lastactivity:"No &#250;ltimo Ano", addeddate:"10/12/2025", playtime:"24s", source:"", platform:"PC (Windows)", gamefile:"db3f67b1-460b-43ad-b44c-f4ca3dc85d81.html"},
+{coverimage:"71ccc83a-5960-4f5f-8151-afe73dd4963d/3e86c978-7de2-4e99-a9ff-bbd77b3d576c.jpg", icon:"71ccc83a-5960-4f5f-8151-afe73dd4963d/2ba4b2ed-4dd8-4541-99de-21a30909b7d7.png", id:34, name:"Fall Guys", data:"Fall Guys", lastactivity:"No &#250;ltimo Ano", addeddate:"11/01/2026", playtime:"12m 11s", source:"", platform:"PC (Windows)", gamefile:"71ccc83a-5960-4f5f-8151-afe73dd4963d.html"},
+{coverimage:"697ba38c-1d98-4fdc-8cb8-f3a74479e79d/4f9fc2bb-4733-4a8d-8625-52c4362f420d.jpg", icon:"697ba38c-1d98-4fdc-8cb8-f3a74479e79d/8f3a69cc-34e7-4ab2-9295-aab1f68744de.png", id:35, name:"Farming Simulator 15", data:"Farming Simulator 15", lastactivity:"No &#250;ltimo Ano", addeddate:"22/11/2025", playtime:"13m 31s", source:"", platform:"PC (Windows)", gamefile:"697ba38c-1d98-4fdc-8cb8-f3a74479e79d.html"},
+{coverimage:"0eff3531-343a-424f-8288-eb75e9cffcac/9ad82910-aca2-441f-8038-e582a060bd62.jpg", icon:"", id:36, name:"FireStriker", data:"FireStriker", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"4s", source:"", platform:"Nintendo SNES", gamefile:"0eff3531-343a-424f-8288-eb75e9cffcac.html"},
+{coverimage:"c8087272-ed12-407a-855a-c4fa2c08303d/2f26c8b8-2399-4202-88b6-4e1404609fb9.jpg", icon:"c8087272-ed12-407a-855a-c4fa2c08303d/fe60f552-24e0-4807-b061-fa84a0d8f608.png", id:37, name:"Five Nights at Freddy&#39;s: Into the Pit", data:"Five Nights at Freddy&#39;s: Into the Pit", lastactivity:"No &#250;ltimo Ano", addeddate:"25/01/2026", playtime:"25m 52s", source:"", platform:"PC (Windows)", gamefile:"c8087272-ed12-407a-855a-c4fa2c08303d.html"},
+{coverimage:"9cca3a1c-941b-497f-8684-a27bbf87f652/10799f6c-39d7-4c4c-b437-aadce2d03481.jpg", icon:"9cca3a1c-941b-497f-8684-a27bbf87f652/216551c6-fe01-4034-a723-69cb7375bf84.png", id:38, name:"Forager", data:"Forager", lastactivity:"No &#250;ltimo Ano", addeddate:"12/11/2025", playtime:"4h 4m 0s", source:"", platform:"PC (Windows)", gamefile:"9cca3a1c-941b-497f-8684-a27bbf87f652.html"},
+{coverimage:"8a86834f-4b83-48b4-a978-66c3e66cf1b0/19a0071e-618d-403a-9ace-a06f9879bdf9.jpg", icon:"8a86834f-4b83-48b4-a978-66c3e66cf1b0/771aed69-e66b-421c-977e-37760331c756.png", id:39, name:"Gabby&#39;s Dollhouse: Ready to Party", data:"Gabby&#39;s Dollhouse: Ready to Party", lastactivity:"No &#250;ltimo Ano", addeddate:"01/12/2025", playtime:"7h 57m 48s", source:"Hydra", platform:"PC (Windows)", gamefile:"8a86834f-4b83-48b4-a978-66c3e66cf1b0.html"},
+{coverimage:"2cde9e59-26f8-4a80-946c-f70c37a4c8f9/9c3a2892-30f3-4f6e-9b68-b46bd186253e.jpg", icon:"2cde9e59-26f8-4a80-946c-f70c37a4c8f9/352b3837-1d39-47d7-8f69-393a499da791.png", id:40, name:"Gang Beasts", data:"Gang Beasts", lastactivity:"No &#250;ltimo Ano", addeddate:"20/10/2025", playtime:"5h 19m 24s", source:"", platform:"PC (Windows)", gamefile:"2cde9e59-26f8-4a80-946c-f70c37a4c8f9.html"},
+{coverimage:"60e50974-f523-4219-94c6-b5314e07259f/88f4aaa2-43d5-40c4-b093-0dc635742b35.jpg", icon:"60e50974-f523-4219-94c6-b5314e07259f/336e21cb-f5d6-46a5-a061-3e35754e7516.png", id:41, name:"Gigantosaurus - The Game", data:"Gigantosaurus - The Game", lastactivity:"No &#250;ltimo Ano", addeddate:"05/12/2025", playtime:"50m 17s", source:"", platform:"PC (Windows)", gamefile:"60e50974-f523-4219-94c6-b5314e07259f.html"},
+{coverimage:"419e952b-2751-4c3e-9d06-deff200f0cbb/b0d0a30c-fe67-432b-8a94-75225c21adc5.jpg", icon:"419e952b-2751-4c3e-9d06-deff200f0cbb/d80577ff-95e9-4c63-b0c3-ae7668bac4b3.png", id:42, name:"Grand Theft Auto: San Andreas", data:"Grand Theft Auto: San Andreas", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"1m 40s", source:"", platform:"PC (Windows)", gamefile:"419e952b-2751-4c3e-9d06-deff200f0cbb.html"},
+{coverimage:"08054305-3b8f-43e0-bbc8-76aac672b78a/a51803f8-1bf0-49b1-b6c4-50a1e5575a82.jpg", icon:"08054305-3b8f-43e0-bbc8-76aac672b78a/1d8a4901-38fc-439a-8c38-28725e338532.png", id:43, name:"Heartopia", data:"Heartopia", lastactivity:"No &#250;ltimo Ano", addeddate:"29/01/2026", playtime:"7m 3s", source:"", platform:"PC (Windows)", gamefile:"08054305-3b8f-43e0-bbc8-76aac672b78a.html"},
+{coverimage:"84be199b-eaf8-42e5-997c-49b1cf835918/f4ec174c-a823-44c4-8d68-2f3f8f6ad20f.jpg", icon:"84be199b-eaf8-42e5-997c-49b1cf835918/b895c777-d839-4343-988c-54dd68b63444", id:44, name:"Heave Ho", data:"Heave Ho", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"1m 40s", source:"", platform:"PC (Windows)", gamefile:"84be199b-eaf8-42e5-997c-49b1cf835918.html"},
+{coverimage:"471cfafc-b8f6-49c1-af83-cd7ab9174980/0afb056c-f36f-408f-9fe8-5c1df4765bf7.jpg", icon:"471cfafc-b8f6-49c1-af83-cd7ab9174980/896cc782-a624-462b-8a3c-ffa5a2a3598c.png", id:45, name:"Heave Ho", data:"Heave Ho", lastactivity:"No &#250;ltimo Ano", addeddate:"23/02/2026", playtime:"2h 30m 43s", source:"", platform:"PC (Windows)", gamefile:"471cfafc-b8f6-49c1-af83-cd7ab9174980.html"},
+{coverimage:"26b6594d-c183-402f-a209-99067696a067/37dd21a0-7cd1-4bd4-a8e3-abe6a64b23ac.jpg", icon:"26b6594d-c183-402f-a209-99067696a067/7aa56588-428e-4e25-a898-4122d8a083a5", id:46, name:"Hidden in Plain Sight", data:"Hidden in Plain Sight", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"N&#227;o Jogado", source:"", platform:"PC (Windows)", gamefile:"26b6594d-c183-402f-a209-99067696a067.html"},
+{coverimage:"da0e4be7-9f00-4b63-b869-ad009a69bb63/0fb1501f-bf42-410b-b269-57f6cf11ad6b.jpg", icon:"da0e4be7-9f00-4b63-b869-ad009a69bb63/11623587-36f4-4517-9947-0585b7671271.png", id:47, name:"Hollow Knight", data:"Hollow Knight", lastactivity:"No &#250;ltimo M&#234;s", addeddate:"18/10/2025", playtime:"20h 8m 14s", source:"GOG", platform:"PC (Windows)", gamefile:"da0e4be7-9f00-4b63-b869-ad009a69bb63.html"},
+{coverimage:"4760d455-e9c4-472d-986e-1c87a3fc50ac/bd368dc3-83fc-47bf-b533-a8b0036aae45.jpg", icon:"4760d455-e9c4-472d-986e-1c87a3fc50ac/cfa070b2-f5ec-4889-8879-920b98d8ad7c.png", id:48, name:"Hollow Knight: Silksong", data:"Hollow Knight: Silksong", lastactivity:"No &#250;ltimo Ano", addeddate:"08/11/2025", playtime:"13h 28m 4s", source:"", platform:"PC (Windows)", gamefile:"4760d455-e9c4-472d-986e-1c87a3fc50ac.html"},
+{coverimage:"56f13260-bda1-4253-808e-5377b45d8c25/15e59ddf-ee5b-4975-b3f5-63a05fbe5ea0.jpg", icon:"56f13260-bda1-4253-808e-5377b45d8c25/f51adc26-713f-4034-9483-e38abdb287fe.png", id:49, name:"Hot Lava", data:"Hot Lava", lastactivity:"No &#250;ltimo Ano", addeddate:"01/02/2026", playtime:"44s", source:"", platform:"PC (Windows)", gamefile:"56f13260-bda1-4253-808e-5377b45d8c25.html"},
+{coverimage:"d39766a6-ea4e-4585-b3ec-5041ddcba8e0/2a38ed9a-d68b-41b0-800f-6d52d08682e7.jpg", icon:"d39766a6-ea4e-4585-b3ec-5041ddcba8e0/85ad0911-0aac-47f9-a12f-b4b1cafda8c7.png", id:50, name:"Hot Wheels Monster Trucks: Stunt Mayhem", data:"Hot Wheels Monster Trucks: Stunt Mayhem", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"22s", source:"", platform:"PC (Windows)", gamefile:"d39766a6-ea4e-4585-b3ec-5041ddcba8e0.html"},
+{coverimage:"938ea6f0-a3f9-4bcf-bdb4-5725e124fbb9/7e30bb37-542b-434e-b8a1-9bd1f9fd9eed.jpg", icon:"938ea6f0-a3f9-4bcf-bdb4-5725e124fbb9/93159c3c-2949-43c0-a4c4-79c942fe2855.png", id:51, name:"Hotline Miami", data:"Hotline Miami", lastactivity:"H&#225; mais de um ano", addeddate:"30/01/2025", playtime:"32s", source:"GOG", platform:"PC (Windows)", gamefile:"938ea6f0-a3f9-4bcf-bdb4-5725e124fbb9.html"},
+{coverimage:"aa1f9896-e9e3-4264-9c4c-56fcd82c06ee/ce77a5f9-9516-4cd6-9135-fcd1cb2a62cd.jpg", icon:"aa1f9896-e9e3-4264-9c4c-56fcd82c06ee/e5bfc689-56c6-456a-b9ab-5666bd6f9d0e.png", id:52, name:"It Takes Two", data:"It Takes Two", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"N&#227;o Jogado", source:"", platform:"PC (Windows)", gamefile:"aa1f9896-e9e3-4264-9c4c-56fcd82c06ee.html"},
+{coverimage:"af3d0b7e-d0ea-4304-87fd-8ca0ac56d682/0bd51ecf-95dd-4020-b603-eaf8a367da77.jpg", icon:"", id:53, name:"Jackie Chan: Stuntmaster", data:"Jackie Chan: Stuntmaster", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"2m 39s", source:"", platform:"Sony PlayStation", gamefile:"af3d0b7e-d0ea-4304-87fd-8ca0ac56d682.html"},
+{coverimage:"95113c85-bddd-4fdc-a7b4-79ddffad7ab7/0594d3ef-0871-4d4f-94a7-4a33d34c3fc4.jpg", icon:"95113c85-bddd-4fdc-a7b4-79ddffad7ab7/248870b8-4577-42cc-bea6-a750bf5851a7.png", id:54, name:"League of Legends", data:"League of Legends", lastactivity:"Ontem", addeddate:"03/04/2026", playtime:"20h 7m 56s", source:"Riot Games", platform:"PC (Windows)", gamefile:"95113c85-bddd-4fdc-a7b4-79ddffad7ab7.html"},
+{coverimage:"6a5e0f4d-51eb-41ea-8392-b3c5455313c7/0ad4368c-06e8-4f4d-906f-21afb8b28a60.jpg", icon:"6a5e0f4d-51eb-41ea-8392-b3c5455313c7/35772fd6-1feb-4064-9d48-754c033b9367", id:55, name:"Little Kitty, Big City", data:"Little Kitty, Big City", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"1m 40s", source:"Hydra", platform:"PC (Windows)", gamefile:"6a5e0f4d-51eb-41ea-8392-b3c5455313c7.html"},
+{coverimage:"b18ed933-3237-4475-981d-7e85b7b46c04/6029cdc3-ff99-4614-aefc-f4bd9810b414.jpg", icon:"b18ed933-3237-4475-981d-7e85b7b46c04/4424c1af-181b-4aa8-b93c-f49456c44dd1.png", id:56, name:"Little Nightmares", data:"Little Nightmares", lastactivity:"No &#250;ltimo Ano", addeddate:"20/11/2025", playtime:"1m 40s", source:"Hydra", platform:"PC (Windows)", gamefile:"b18ed933-3237-4475-981d-7e85b7b46c04.html"},
+{coverimage:"06c39838-5e3c-4fd5-be9f-70d39e03a3c0/fb09355f-db75-4208-bca2-2b5d76feb6bc.jpg", icon:"06c39838-5e3c-4fd5-be9f-70d39e03a3c0/257e15ef-4a50-447d-8897-b758449af2f7.png", id:57, name:"Lovers in a Dangerous Spacetime", data:"Lovers in a Dangerous Spacetime", lastactivity:"No &#250;ltimo Ano", addeddate:"18/10/2025", playtime:"2h 7m 56s", source:"", platform:"PC (Windows)", gamefile:"06c39838-5e3c-4fd5-be9f-70d39e03a3c0.html"},
+{coverimage:"8a3e1bf6-9acb-4e99-86fe-d944aa9a7026/923c2bb5-28cd-47ac-92a0-4dabee3a286b.jpg", icon:"8a3e1bf6-9acb-4e99-86fe-d944aa9a7026/6e5421e8-490c-431c-8eed-b9df3c6c5048.png", id:58, name:"Megabonk", data:"Megabonk", lastactivity:"No &#250;ltimo Ano", addeddate:"18/10/2025", playtime:"1d 5h 49m 30s", source:"", platform:"PC (Windows)", gamefile:"8a3e1bf6-9acb-4e99-86fe-d944aa9a7026.html"},
+{coverimage:"0ff3119e-0ebf-496c-8e19-110ab5215884/8536b8aa-db48-4bb6-a75f-40990ddecde7.jpg", icon:"0ff3119e-0ebf-496c-8e19-110ab5215884/58602ecc-54bf-4eb3-96fe-0ec0337b492b.png", id:59, name:"Minecraft: Java Edition", data:"Minecraft: Java Edition", lastactivity:"No &#250;ltimo Ano", addeddate:"18/01/2026", playtime:"12s", source:"GooglePlayGames", platform:"PC (Windows)", gamefile:"0ff3119e-0ebf-496c-8e19-110ab5215884.html"},
+{coverimage:"09727dbd-2649-4539-83e9-04de648a18c8/74296140-5d58-4013-937e-ee6930bdcb1d.jpg", icon:"09727dbd-2649-4539-83e9-04de648a18c8/bd2e04c7-aacd-4c4c-baa7-d668d37a1e45.jpg", id:60, name:"Move or Die", data:"Move or Die", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"N&#227;o Jogado", source:"", platform:"PC (Windows)", gamefile:"09727dbd-2649-4539-83e9-04de648a18c8.html"},
+{coverimage:"d8d2227e-5fe0-4c2a-941b-352503b495b4/204f302f-990b-48f5-85fe-62ca971fb616.jpg", icon:"d8d2227e-5fe0-4c2a-941b-352503b495b4/6015ff60-9b8b-42ff-9065-9af7084a17ad", id:61, name:"Moving Out", data:"Moving Out", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"1m 40s", source:"", platform:"PC (Windows)", gamefile:"d8d2227e-5fe0-4c2a-941b-352503b495b4.html"},
+{coverimage:"46b09f3e-2719-45bb-b187-19873e717620/151625f6-001f-4807-9973-01e5a4695135.jpg", icon:"46b09f3e-2719-45bb-b187-19873e717620/e9523eb9-af2a-4d35-a738-c66724caa8d5.png", id:62, name:"Moving Out 2", data:"Moving Out 2", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"N&#227;o Jogado", source:"", platform:"PC (Windows)", gamefile:"46b09f3e-2719-45bb-b187-19873e717620.html"},
+{coverimage:"965fa607-0d40-43ef-9df7-786fa7601205/4147b034-13c7-4038-9667-df1a72add33f.jpg", icon:"965fa607-0d40-43ef-9df7-786fa7601205/5a7b8156-fa47-45cf-9ce4-838990544f4d.jpg", id:63, name:"Mullet Madjack", data:"Mullet Madjack", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"1m 40s", source:"", platform:"PC (Windows)", gamefile:"965fa607-0d40-43ef-9df7-786fa7601205.html"},
+{coverimage:"79f8a181-d9d7-4165-a34c-80582c150b58/db5b4ad6-4a13-48e6-8933-40bed4fbf52d.jpg", icon:"79f8a181-d9d7-4165-a34c-80582c150b58/b80b574c-9099-405e-9443-a3b40a55321e.png", id:64, name:"Need for Speed: Most Wanted", data:"Need for Speed: Most Wanted", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"1m 40s", source:"", platform:"PC (Windows)", gamefile:"79f8a181-d9d7-4165-a34c-80582c150b58.html"},
+{coverimage:"2a519162-f6e6-4002-a6cb-44fc7580b22c/6b01e880-8cc4-4bf3-9043-50a85c5e589d.jpg", icon:"2a519162-f6e6-4002-a6cb-44fc7580b22c/05226514-b2dd-4c86-a7b8-5ca0c5e4e8a7.png", id:65, name:"Need for Speed: Underground 2", data:"Need for Speed: Underground 2", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"N&#227;o Jogado", source:"", platform:"PC (Windows)", gamefile:"2a519162-f6e6-4002-a6cb-44fc7580b22c.html"},
+{coverimage:"bce34822-cb47-460c-8344-25dd3458c25b/e88cbf4c-3ba8-4020-a492-3e581da29bed.jpg", icon:"bce34822-cb47-460c-8344-25dd3458c25b/52b6a439-53d1-44a0-b9b2-221a2e23baa9.png", id:66, name:"Nidhogg 2", data:"Nidhogg 2", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"N&#227;o Jogado", source:"", platform:"PC (Windows)", gamefile:"bce34822-cb47-460c-8344-25dd3458c25b.html"},
+{coverimage:"eec1f158-ed36-4a31-8c8a-61646c8c38cc/46020053-962c-468f-b689-f5bbaac52031.jpg", icon:"eec1f158-ed36-4a31-8c8a-61646c8c38cc/9836ba00-d49d-4b00-b355-07285cad3843.png", id:67, name:"Oblin Party", data:"Oblin Party", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"1h 18m 56s", source:"", platform:"PC (Windows)", gamefile:"eec1f158-ed36-4a31-8c8a-61646c8c38cc.html"},
+{coverimage:"11e9d4c3-d946-4ad6-b89f-aede58abda59/d49dab77-76e6-4dae-9a35-f951b01f3f18.jpg", icon:"", id:68, name:"On the Ball", data:"On the Ball", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"48s", source:"", platform:"Nintendo SNES", gamefile:"11e9d4c3-d946-4ad6-b89f-aede58abda59.html"},
+{coverimage:"70a8b3b8-af90-4fcc-8784-e24504d0965c/5625da56-a72f-4217-9a64-b41c9dd24f2c.jpg", icon:"70a8b3b8-af90-4fcc-8784-e24504d0965c/cd00c344-7ba0-4ab9-8968-10739f09e191.png", id:69, name:"Ori and the Blind Forest", data:"Ori and the Blind Forest", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"1m 40s", source:"", platform:"PC (Windows)", gamefile:"70a8b3b8-af90-4fcc-8784-e24504d0965c.html"},
+{coverimage:"437ac254-83d0-41ed-a54a-2bdee7efa3a7/039da3a3-4f1c-4be0-87a4-b0d380c12021.jpg", icon:"437ac254-83d0-41ed-a54a-2bdee7efa3a7/e1595828-e953-41d7-abca-e159282619d9.ico", id:70, name:"Overcooked! 2", data:"Overcooked! 2", lastactivity:"No &#250;ltimo Ano", addeddate:"18/10/2025", playtime:"28s", source:"Epic", platform:"PC (Windows)", gamefile:"437ac254-83d0-41ed-a54a-2bdee7efa3a7.html"},
+{coverimage:"cc055eaa-8d58-4161-a54b-a1c2bc19ef6c/cbf85bf9-95a4-431d-bec2-bd485ed1bdfd.jpg", icon:"cc055eaa-8d58-4161-a54b-a1c2bc19ef6c/d43ac023-4f2a-4949-a125-36c4d21939d0.png", id:71, name:"PAW Patrol Mighty Pups: Save Adventure Bay!", data:"PAW Patrol Mighty Pups: Save Adventure Bay!", lastactivity:"No &#250;ltimo Ano", addeddate:"21/12/2025", playtime:"3h 3m 42s", source:"", platform:"PC (Windows)", gamefile:"cc055eaa-8d58-4161-a54b-a1c2bc19ef6c.html"},
+{coverimage:"c376a87d-4116-4def-a002-aca82889ecad/4a799215-bc3c-4d0d-8474-02685483771e.jpg", icon:"c376a87d-4116-4def-a002-aca82889ecad/582da7a7-659b-4327-997a-266e0eeeb8c4.png", id:72, name:"Paw Patrol: Grand Prix", data:"Paw Patrol: Grand Prix", lastactivity:"No &#250;ltimo Ano", addeddate:"29/01/2026", playtime:"33m 6s", source:"", platform:"PC (Windows)", gamefile:"c376a87d-4116-4def-a002-aca82889ecad.html"},
+{coverimage:"525880b8-7c7e-4068-9fe2-e82ce65a0edc/0efdab0e-250e-4b11-ae6e-0c12adae8879.jpg", icon:"525880b8-7c7e-4068-9fe2-e82ce65a0edc/d18b3c20-ec58-4b6c-8c92-33b0fe16b607.png", id:73, name:"Paw Patrol: World", data:"Paw Patrol: World", lastactivity:"No &#250;ltimo M&#234;s", addeddate:"20/11/2025", playtime:"11h 15m 53s", source:"", platform:"PC (Windows)", gamefile:"525880b8-7c7e-4068-9fe2-e82ce65a0edc.html"},
+{coverimage:"79125c8b-cfcd-421b-b4e4-1964f1214a0c/4cbc7859-55c0-4e96-aef2-9d233a972251.jpg", icon:"79125c8b-cfcd-421b-b4e4-1964f1214a0c/ef63709c-1854-4a1a-bf7f-76d773e4fa6f.png", id:74, name:"PHOGS!", data:"PHOGS!", lastactivity:"No &#250;ltimo Ano", addeddate:"23/11/2025", playtime:"59m 43s", source:"Hydra", platform:"PC (Windows)", gamefile:"79125c8b-cfcd-421b-b4e4-1964f1214a0c.html"},
+{coverimage:"b027b80c-4e0b-40f5-984b-6eb178ee9f15/862f799e-dab3-4d8c-994f-e0e7e1afa4b3.jpg", icon:"b027b80c-4e0b-40f5-984b-6eb178ee9f15/dfc9f910-dba0-4aea-9888-ccb152ce65ef.png", id:75, name:"PICO PARK", data:"PICO PARK", lastactivity:"No &#250;ltimo Ano", addeddate:"25/10/2025", playtime:"32s", source:"Steam", platform:"PC (Windows)", gamefile:"b027b80c-4e0b-40f5-984b-6eb178ee9f15.html"},
+{coverimage:"424485ef-a068-427e-a72a-c9b2c1dcaec5/2487b7cb-38b9-4ac1-a9ea-d7d93022395a.jpg", icon:"424485ef-a068-427e-a72a-c9b2c1dcaec5/5c5bc5f1-77e2-49b5-a38e-9dac61808c87.png", id:76, name:"Pikuniku", data:"Pikuniku", lastactivity:"No &#250;ltimo Ano", addeddate:"18/10/2025", playtime:"5h 21m 11s", source:"GOG", platform:"PC (Windows)", gamefile:"424485ef-a068-427e-a72a-c9b2c1dcaec5.html"},
+{coverimage:"1c4f3714-5712-408e-8748-7e6acbbcf085/8c7d758a-feb5-42a0-bd04-110df12744ef.jpg", icon:"1c4f3714-5712-408e-8748-7e6acbbcf085/7e4d3668-c684-4ec7-a22a-430ad3c16a5c.png", id:77, name:"Pixel Cup Soccer: Ultimate Edition", data:"Pixel Cup Soccer: Ultimate Edition", lastactivity:"No &#250;ltimo Ano", addeddate:"06/12/2025", playtime:"1m 34s", source:"", platform:"PC (Windows)", gamefile:"1c4f3714-5712-408e-8748-7e6acbbcf085.html"},
+{coverimage:"fb4e650f-f0b0-47fd-9c89-216363999431/b665048a-e0ac-4928-8b4d-47c58bf4c87a.jpg", icon:"fb4e650f-f0b0-47fd-9c89-216363999431/d39c195d-e793-4f6b-b612-f025f4fbbb45.png", id:78, name:"Pode", data:"Pode", lastactivity:"No &#250;ltimo M&#234;s", addeddate:"18/10/2025", playtime:"31m 30s", source:"", platform:"PC (Windows)", gamefile:"fb4e650f-f0b0-47fd-9c89-216363999431.html"},
+{coverimage:"b723c344-d90e-4db9-b4fd-52adcb2c1af9/dcd3cf82-5226-4a7c-b905-052fa2a0843b.jpg", icon:"b723c344-d90e-4db9-b4fd-52adcb2c1af9/ec5a53c4-f939-40a4-b31e-f8678d6ff6f4.png", id:79, name:"Poppy Playtime", data:"Poppy Playtime", lastactivity:"No &#250;ltimo M&#234;s", addeddate:"07/04/2026", playtime:"1h 47m 26s", source:"", platform:"PC (Windows)", gamefile:"b723c344-d90e-4db9-b4fd-52adcb2c1af9.html"},
+{coverimage:"e0ed11b9-a380-4a13-8d84-4bd9fab40f40/70576b87-69c0-4755-84e3-7b35627e4394.jpg", icon:"e0ed11b9-a380-4a13-8d84-4bd9fab40f40/47aed8ca-3ec2-405e-8845-0f14b290e044.png", id:80, name:"Portal 2", data:"Portal 2", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"4s", source:"", platform:"PC (Windows)", gamefile:"e0ed11b9-a380-4a13-8d84-4bd9fab40f40.html"},
+{coverimage:"d6f25f20-2cbc-4cf3-a4a7-cf2cf29b9924/1f371990-5166-4614-ae61-c6ee415bede9.png", icon:"d6f25f20-2cbc-4cf3-a4a7-cf2cf29b9924/f0f959f9-f109-465c-b66e-49e1d7a2ed81.png", id:81, name:"Pro Evolution Soccer 2013", data:"Pro Evolution Soccer 2013", lastactivity:"No &#250;ltimo Ano", addeddate:"22/02/2026", playtime:"4h 19m 46s", source:"", platform:"PC (Windows)", gamefile:"d6f25f20-2cbc-4cf3-a4a7-cf2cf29b9924.html"},
+{coverimage:"3d98de99-70c0-4b61-baa8-61988876cb3a/a158f48e-a02f-4f6a-8030-1db69430cdcc.jpg", icon:"3d98de99-70c0-4b61-baa8-61988876cb3a/34e7645d-5a44-4d9a-969c-694279dec6ea.png", id:82, name:"PRO EVOLUTION SOCCER 2018", data:"PRO EVOLUTION SOCCER 2018", lastactivity:"No &#250;ltimo Ano", addeddate:"29/01/2026", playtime:"9m 2s", source:"", platform:"PC (Windows)", gamefile:"3d98de99-70c0-4b61-baa8-61988876cb3a.html"},
+{coverimage:"c57cd66d-a2f2-402d-bf5b-e2e7831ac7cb/7f89076a-0033-4bff-b91f-01d1f7d9d3dc.jpg", icon:"c57cd66d-a2f2-402d-bf5b-e2e7831ac7cb/f40efbab-11ae-4938-ad79-9d2852be5b7d.png", id:83, name:"Pummel Party", data:"Pummel Party", lastactivity:"No &#250;ltimo Ano", addeddate:"07/12/2025", playtime:"44m 54s", source:"", platform:"PC (Windows)", gamefile:"c57cd66d-a2f2-402d-bf5b-e2e7831ac7cb.html"},
+{coverimage:"9def05fc-119d-4705-ac29-d7a08f371259/88698c5a-c34c-426e-a7ca-03b68b765f85.jpg", icon:"9def05fc-119d-4705-ac29-d7a08f371259/e2aff5a8-e322-4e1c-b497-92c683f024f4.png", id:84, name:"Roblox", data:"Roblox", lastactivity:"Ontem", addeddate:"13/12/2025", playtime:"2d 17h 36m 9s", source:"", platform:"PC (Windows)", gamefile:"9def05fc-119d-4705-ac29-d7a08f371259.html"},
+{coverimage:"e84db0bb-7b7a-4575-9acf-e032f6c01983/21550e84-c5b3-424b-8493-34f5051af2d1.jpg", icon:"e84db0bb-7b7a-4575-9acf-e032f6c01983/83ff9c20-a428-448c-8fac-0f64e5779fd3.png", id:85, name:"Sackboy A Big Adventure", data:"Sackboy A Big Adventure", lastactivity:"No &#250;ltimo Ano", addeddate:"11/01/2026", playtime:"5h 18m 20s", source:"", platform:"PC (Windows)", gamefile:"e84db0bb-7b7a-4575-9acf-e032f6c01983.html"},
+{coverimage:"c4b0319c-7393-4350-ab35-df1f19df0e65/ad78a458-f064-4f95-b69a-0e0a59c180f9.jpg", icon:"c4b0319c-7393-4350-ab35-df1f19df0e65/ff8443d9-dfcc-46a0-bd96-0f3ee0436b44.png", id:86, name:"Slackers: Carts of Glory", data:"Slackers: Carts of Glory", lastactivity:"No &#250;ltimo Ano", addeddate:"28/11/2025", playtime:"48m 52s", source:"", platform:"PC (Windows)", gamefile:"c4b0319c-7393-4350-ab35-df1f19df0e65.html"},
+{coverimage:"564651ea-6ab3-44cd-9158-397ae4fbe178/121ffd53-818e-4be2-a5e4-15d6673c7579.jpg", icon:"564651ea-6ab3-44cd-9158-397ae4fbe178/1f403999-bb33-4c8a-8834-a0d381bb8ddb.png", id:87, name:"SpeedRunners", data:"SpeedRunners", lastactivity:"No &#250;ltimo Ano", addeddate:"18/10/2025", playtime:"1h 0m 43s", source:"", platform:"PC (Windows)", gamefile:"564651ea-6ab3-44cd-9158-397ae4fbe178.html"},
+{coverimage:"a660f667-8c93-4d38-9e22-d22fef75657c/0befa8c2-05e7-4266-95c4-729d96dcb79d.jpg", icon:"a660f667-8c93-4d38-9e22-d22fef75657c/c9a15a22-74c6-49ec-81eb-6c8c82d3a162.png", id:88, name:"Spelunky 2", data:"Spelunky 2", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"N&#227;o Jogado", source:"Hydra", platform:"PC (Windows)", gamefile:"a660f667-8c93-4d38-9e22-d22fef75657c.html"},
+{coverimage:"39b7c477-5efa-44e7-a8f3-3fad4199dfad/fdd5076f-2060-4607-ba12-1c0bd37cb068.jpg", icon:"", id:89, name:"Spider-Man", data:"Spider-Man", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"14m 19s", source:"", platform:"Sony PlayStation", gamefile:"39b7c477-5efa-44e7-a8f3-3fad4199dfad.html"},
+{coverimage:"4e69f4a6-8ba5-4be4-afc3-bf09b6b138da/45cf85da-3926-49aa-8403-05529e0db9c4.jpg", icon:"4e69f4a6-8ba5-4be4-afc3-bf09b6b138da/fc4b2138-fcd6-4219-b539-572685f4f72a.png", id:90, name:"SpiderHeck", data:"SpiderHeck", lastactivity:"No &#250;ltimo M&#234;s", addeddate:"27/12/2025", playtime:"3h 48m 47s", source:"", platform:"PC (Windows)", gamefile:"4e69f4a6-8ba5-4be4-afc3-bf09b6b138da.html"},
+{coverimage:"32869a77-a8a4-4269-96d2-ab09d3192b53/7ec1a84f-cdb0-4c0f-8f4a-ff0ecbe4b36c.jpg", icon:"32869a77-a8a4-4269-96d2-ab09d3192b53/38184026-cf03-42f8-94cf-bb4b4bd7732d", id:91, name:"Spiritfarer", data:"Spiritfarer", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"1m 40s", source:"", platform:"PC (Windows)", gamefile:"32869a77-a8a4-4269-96d2-ab09d3192b53.html"},
+{coverimage:"4023a001-53c2-45e9-b4a6-b815940866b1/bd31872d-e50a-445d-b5ee-e2cae1659e34.jpg", icon:"4023a001-53c2-45e9-b4a6-b815940866b1/808d7c45-65f7-4eeb-9533-d96c84f8a71e.png", id:92, name:"SpongeBob SquarePants: Battle for Bikini Bottom - Rehydrated", data:"SpongeBob SquarePants: Battle for Bikini Bottom - Rehydrated", lastactivity:"No &#250;ltimo Ano", addeddate:"18/10/2025", playtime:"46s", source:"GOG", platform:"PC (Windows)", gamefile:"4023a001-53c2-45e9-b4a6-b815940866b1.html"},
+{coverimage:"5e08dff0-9893-408d-908f-a46fd533fd6e/e8b3fbcb-1a02-48fe-80cb-4a76f4f52544.jpg", icon:"5e08dff0-9893-408d-908f-a46fd533fd6e/63be4f60-32e8-4aaa-ba07-55e7325de513.png", id:93, name:"Stardew Valley", data:"Stardew Valley", lastactivity:"No &#250;ltimo Ano", addeddate:"29/12/2025", playtime:"3d 21h 26m 42s", source:"", platform:"PC (Windows)", gamefile:"5e08dff0-9893-408d-908f-a46fd533fd6e.html"},
+{coverimage:"f235e46c-1526-4006-bfb2-c5851f572621/db6c357d-58f0-489a-83c0-3bbb3a031bc8.jpg", icon:"f235e46c-1526-4006-bfb2-c5851f572621/9cafd2dc-41ea-4e2b-ae81-d8d0e83d53d2.png", id:94, name:"Stick Fight: The Game", data:"Stick Fight: The Game", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"1h 42m 56s", source:"", platform:"PC (Windows)", gamefile:"f235e46c-1526-4006-bfb2-c5851f572621.html"},
+{coverimage:"", icon:"", id:95, name:"Super Bomber Man 4", data:"Super Bomber Man 4", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"1h 4m 50s", source:"", platform:"Nintendo SNES", gamefile:"f9157ee6-92e4-4c6d-9b7c-dac35944e2e3.html"},
+{coverimage:"5b14403b-8f8d-4d27-b29a-bb1a65f349f2/e9e0ab29-af88-4e28-bc29-d376a6b147f5.jpg", icon:"", id:96, name:"Super Bomberman", data:"Super Bomberman", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"4m 10s", source:"", platform:"Nintendo SNES", gamefile:"5b14403b-8f8d-4d27-b29a-bb1a65f349f2.html"},
+{coverimage:"3c84f37a-0aa9-4ceb-8b37-b13dfcfa331d/66602979-dac5-4058-8fc8-51929cd0f527.jpg", icon:"", id:97, name:"Super Bomberman 2", data:"Super Bomberman 2", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"19m 28s", source:"", platform:"Nintendo SNES", gamefile:"3c84f37a-0aa9-4ceb-8b37-b13dfcfa331d.html"},
+{coverimage:"b96c2c2d-2738-4298-875d-a65e670b7259/e406cc53-029e-43b7-86f4-d9ce6b1b39f9.jpg", icon:"", id:98, name:"Super Bomberman 3", data:"Super Bomberman 3", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"39m 22s", source:"", platform:"Nintendo SNES", gamefile:"b96c2c2d-2738-4298-875d-a65e670b7259.html"},
+{coverimage:"258af497-d0b3-455d-ae96-612af4874c72/35fde3e1-aed0-459a-8ae3-888fcf090ba1.jpg", icon:"", id:99, name:"Super Bomberman 5", data:"Super Bomberman 5", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"14m 30s", source:"", platform:"Nintendo SNES", gamefile:"258af497-d0b3-455d-ae96-612af4874c72.html"},
+{coverimage:"4b86754d-d4ab-4223-8e94-81cf6fe2a656/31bf8d37-8092-4ce8-acc5-a36080a041a1.jpg", icon:"", id:100, name:"Super Mario World", data:"Super Mario World", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"6m 36s", source:"", platform:"Nintendo SNES", gamefile:"4b86754d-d4ab-4223-8e94-81cf6fe2a656.html"},
+{coverimage:"ae38a81e-8fd3-4ff7-835f-f60e5d459168/742c5cf9-da61-4045-8cee-a4f4b9800a7a.jpg", icon:"ae38a81e-8fd3-4ff7-835f-f60e5d459168/dd38edc4-5df7-4cd6-9513-1895030c0075.png", id:101, name:"Tales from Space: Mutant Blobs Attack", data:"Tales from Space: Mutant Blobs Attack", lastactivity:"No &#250;ltimo Ano", addeddate:"12/11/2025", playtime:"20s", source:"", platform:"PC (Windows)", gamefile:"ae38a81e-8fd3-4ff7-835f-f60e5d459168.html"},
+{coverimage:"814726d9-14bb-4bdb-82a8-cbef9a05fe97/13a3383c-b4b6-4721-a6dd-996289b25ac0.jpg", icon:"814726d9-14bb-4bdb-82a8-cbef9a05fe97/a9007721-600e-4b90-b669-6d17da5bcdea.png", id:102, name:"Thank Goodness You&#39;re Here!", data:"Thank Goodness You&#39;re Here!", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"1m 40s", source:"Hydra", platform:"PC (Windows)", gamefile:"814726d9-14bb-4bdb-82a8-cbef9a05fe97.html"},
+{coverimage:"63cfb371-0e7d-415c-a1d4-cc977fe2f8ad/27b25aad-1995-40ca-8504-1c8ffaa69e36.jpg", icon:"63cfb371-0e7d-415c-a1d4-cc977fe2f8ad/e8a3b445-286c-40b0-8fbb-3c45db050c67.png", id:103, name:"The Game of Life 2", data:"The Game of Life 2", lastactivity:"No &#250;ltimo Ano", addeddate:"07/02/2026", playtime:"7m 9s", source:"", platform:"PC (Windows)", gamefile:"63cfb371-0e7d-415c-a1d4-cc977fe2f8ad.html"},
+{coverimage:"243ad0c4-472b-4b6b-b435-542de59aed11/6a86cec6-4cc1-4bad-b6cd-8c496f45adfb.jpg", icon:"243ad0c4-472b-4b6b-b435-542de59aed11/88529ca9-e912-487c-b64a-8a055694a6be.png", id:104, name:"The Gnorp Apologue", data:"The Gnorp Apologue", lastactivity:"No &#250;ltimo M&#234;s", addeddate:"09/01/2026", playtime:"11h 32m 51s", source:"", platform:"PC (Windows)", gamefile:"243ad0c4-472b-4b6b-b435-542de59aed11.html"},
+{coverimage:"8e0ff681-16f4-40b9-ba20-f938ff9faf5d/46af055d-8454-4b59-953a-58e826bc0c40.jpg", icon:"8e0ff681-16f4-40b9-ba20-f938ff9faf5d/438fbc9c-6e54-4d6e-9815-0002ea8cf081", id:105, name:"The Jackbox Party Pack", data:"The Jackbox Party Pack", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"N&#227;o Jogado", source:"", platform:"PC (Windows)", gamefile:"8e0ff681-16f4-40b9-ba20-f938ff9faf5d.html"},
+{coverimage:"7f04eff3-413a-4057-908f-035394180e84/0503ee81-9c27-4821-a501-b66ec6e3987f.jpg", icon:"7f04eff3-413a-4057-908f-035394180e84/ba8f65c1-d415-4691-a873-fdfa6e361cfd.png", id:106, name:"The Long Drive", data:"The Long Drive", lastactivity:"No &#250;ltimo Ano", addeddate:"14/12/2025", playtime:"31m 9s", source:"", platform:"PC (Windows)", gamefile:"7f04eff3-413a-4057-908f-035394180e84.html"},
+{coverimage:"7c0cb008-b9de-49bb-825c-088f2bb02062/c8f03a78-6dba-4ec2-b3ba-901086a01ca3.jpg", icon:"7c0cb008-b9de-49bb-825c-088f2bb02062/e4487710-f257-4d04-b3e7-babdc57077a9", id:107, name:"Timberborn", data:"Timberborn", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"1m 40s", source:"Hydra", platform:"PC (Windows)", gamefile:"7c0cb008-b9de-49bb-825c-088f2bb02062.html"},
+{coverimage:"5438e929-4cdd-4b52-82cc-643b8efec975/457cfcd8-2c96-43d3-adf5-909f6af79b39.jpg", icon:"5438e929-4cdd-4b52-82cc-643b8efec975/4688f093-b35a-4d61-9a3d-89a41f671929", id:108, name:"Tiny Terry&#39;s Turbo Trip", data:"Tiny Terry&#39;s Turbo Trip", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"1m 40s", source:"", platform:"PC (Windows)", gamefile:"5438e929-4cdd-4b52-82cc-643b8efec975.html"},
+{coverimage:"87ea0e73-a98f-43a8-a24c-77d60fd8ed4e/3fae94d2-ffbd-4ee8-b917-569185188016.jpg", icon:"", id:109, name:"Tony Hawk&#39;s Pro Skater 2", data:"Tony Hawk&#39;s Pro Skater 2", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"3m 57s", source:"", platform:"Sony PlayStation", gamefile:"87ea0e73-a98f-43a8-a24c-77d60fd8ed4e.html"},
+{coverimage:"7b7fffa8-913d-4b07-b313-5c0ed5beafe5/251606ca-8e64-4623-9d31-7bcb1112bd1a.jpg", icon:"7b7fffa8-913d-4b07-b313-5c0ed5beafe5/ceea6468-ed83-4d30-8726-f67a69282770.png", id:110, name:"Tools Up!", data:"Tools Up!", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"N&#227;o Jogado", source:"", platform:"PC (Windows)", gamefile:"7b7fffa8-913d-4b07-b313-5c0ed5beafe5.html"},
+{coverimage:"c180c7c6-8bdc-475b-b68e-392fcb080128/5eb2caa2-9a84-400f-a5b4-d878694b29e9.jpg", icon:"", id:111, name:"Total Football", data:"Total Football", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"1m 8s", source:"", platform:"Nintendo SNES", gamefile:"c180c7c6-8bdc-475b-b68e-392fcb080128.html"},
+{coverimage:"4fb0a34a-c6bb-4e83-892f-8dbd6758fada/8a0c5d3f-0fad-4457-aedf-598785d36e5e.jpg", icon:"4fb0a34a-c6bb-4e83-892f-8dbd6758fada/814aa2ed-9efe-4911-a8b0-0bc317d03a7b.png", id:112, name:"TowerFall Ascension", data:"TowerFall Ascension", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"N&#227;o Jogado", source:"", platform:"PC (Windows)", gamefile:"4fb0a34a-c6bb-4e83-892f-8dbd6758fada.html"},
+{coverimage:"14439ceb-086a-4d63-a3f3-ccc85eb852d0/1fa77632-f3ce-417d-8d21-81e441cfec30.jpg", icon:"14439ceb-086a-4d63-a3f3-ccc85eb852d0/b7e6bfc6-5743-4662-a06e-7df65a982651.png", id:113, name:"Ultimate Chicken Horse", data:"Ultimate Chicken Horse", lastactivity:"No &#250;ltimo Ano", addeddate:"18/10/2025", playtime:"2h 57m 6s", source:"", platform:"PC (Windows)", gamefile:"14439ceb-086a-4d63-a3f3-ccc85eb852d0.html"},
+{coverimage:"4098d3b2-7083-4c38-9401-9e0a5fbd04d4/7b3e6366-abee-44a8-be51-54b54f862332.jpg", icon:"4098d3b2-7083-4c38-9401-9e0a5fbd04d4/191a74a2-519c-4e12-8e00-b8f512763910.png", id:114, name:"Undertale", data:"Undertale", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"15m 20s", source:"", platform:"PC (Windows)", gamefile:"4098d3b2-7083-4c38-9401-9e0a5fbd04d4.html"},
+{coverimage:"474a0921-5eef-4e88-9813-9691ef1110e0/ea15c2f0-d0b7-4d9c-89c7-5a0b118dfc31.jpg", icon:"474a0921-5eef-4e88-9813-9691ef1110e0/a8b6d784-086a-4c57-ac08-3d55b0e398c9.png", id:115, name:"Unrailed 2: Back on Track", data:"Unrailed 2: Back on Track", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"N&#227;o Jogado", source:"", platform:"PC (Windows)", gamefile:"474a0921-5eef-4e88-9813-9691ef1110e0.html"},
+{coverimage:"23e907e8-21ad-4347-8035-2fdd767e5d6b/c5af953a-76f0-450a-b63e-b50448b30da3.jpg", icon:"23e907e8-21ad-4347-8035-2fdd767e5d6b/40c35d9e-e9f6-4f38-a69d-7b69be233624.png", id:116, name:"Unrailed!", data:"Unrailed!", lastactivity:"No &#250;ltimo Ano", addeddate:"16/11/2025", playtime:"7m 27s", source:"", platform:"PC (Windows)", gamefile:"23e907e8-21ad-4347-8035-2fdd767e5d6b.html"},
+{coverimage:"921a6ea9-cae0-437d-b237-51ff9846e0ed/9f89379e-d50d-41b2-aa29-7748cd5ad07c.jpg", icon:"921a6ea9-cae0-437d-b237-51ff9846e0ed/199db548-5f2f-4530-9c26-f4228fea6a07.png", id:117, name:"Unravel Two", data:"Unravel Two", lastactivity:"No &#250;ltimo Ano", addeddate:"31/10/2025", playtime:"2h 31m 24s", source:"", platform:"PC (Windows)", gamefile:"921a6ea9-cae0-437d-b237-51ff9846e0ed.html"},
+{coverimage:"a10618a5-d0a7-4ae8-94e9-4716dfec94b4/e6e9dfb5-a193-4e8a-843f-7854fd6922d7.jpg", icon:"a10618a5-d0a7-4ae8-94e9-4716dfec94b4/2cc68971-f783-4233-8a26-9b5091cb319c", id:118, name:"Untitled Goose Game", data:"Untitled Goose Game", lastactivity:"Nunca", addeddate:"20/11/2025", playtime:"1m 40s", source:"", platform:"PC (Windows)", gamefile:"a10618a5-d0a7-4ae8-94e9-4716dfec94b4.html"},
+{coverimage:"390c9e29-a08c-4ce6-863c-0e67c5ef42f8/9d5fd0b7-2889-4a68-9692-d1f3fcdd93a9.jpg", icon:"390c9e29-a08c-4ce6-863c-0e67c5ef42f8/a1115dc3-f344-471e-8d27-a0366edc4462.png", id:119, name:"V Rising", data:"V Rising", lastactivity:"No &#250;ltimo M&#234;s", addeddate:"06/04/2026", playtime:"2m 43s", source:"", platform:"PC (Windows)", gamefile:"390c9e29-a08c-4ce6-863c-0e67c5ef42f8.html"},
+{coverimage:"6dd5b6cb-dd73-4e3d-94f6-38c8ef2d4280/c4fa5342-7255-4bf9-a3a8-1c00980ffae0.jpg", icon:"6dd5b6cb-dd73-4e3d-94f6-38c8ef2d4280/963336bb-a565-42e2-9f8b-557c202e324d.png", id:120, name:"Visage", data:"Visage", lastactivity:"Nunca", addeddate:"30/01/2025", playtime:"N&#227;o Jogado", source:"GOG", platform:"PC (Windows)", gamefile:"6dd5b6cb-dd73-4e3d-94f6-38c8ef2d4280.html"},
+{coverimage:"83cbee60-d0d4-4ca6-a028-c15dfae5b254/7be0d36b-978e-485f-89b1-0ed69465e316.jpg", icon:"83cbee60-d0d4-4ca6-a028-c15dfae5b254/b02e8852-b88b-4126-b65f-e961b2302ce8.png", id:121, name:"What The Golf?", data:"What The Golf?", lastactivity:"Na &#250;ltima Semana", addeddate:"18/10/2025", playtime:"6h 35m 23s", source:"GOG", platform:"PC (Windows)", gamefile:"83cbee60-d0d4-4ca6-a028-c15dfae5b254.html"},
+
+	];
+	
+	var iconMutator  = function(value, data, type, params, column) {
+		if (value == "")
+		{
+			return value
+		} else {
+			return "<img height='32' width='32' src='" + value + "'>";
+		}
+	}
+
+	var table = new Tabulator("#gamestable", {
+		data:tabledata,
+		layout:"fitColumns",
+		responsiveLayout:"hide",
+		height:"450px",
+		columns:[
+		{title:"#", formatter:"rownum", width:57, responsive:0}, //incrementing row number
+		{title:"", field:"icon", mutator:iconMutator, formatter:"html", width:41, responsive:0},
+		{title:"Nome", field:"name", widthGrow:2, minWidth:115, formatter:"html", responsive:0},
+		{title:"Nome", field:"data", widthGrow:1, minWidth:115, formatter:"html", responsive:0},
+		{title:"Última Atividade", field:"lastactivity", widthGrow:1, minWidth:125, maxWidth:180, formatter:"html", responsive:8},
+		{title:"Adicionado", field:"addeddate", width:95, sorter:"date", sorterParams:{format:"DD/MM/YYYY"}, formatter:"html", responsive:9}, 
+		{title:"Tempo de jogo", field:"playtime", width:125, formatter:"html", responsive:9},
+		{title:"Fonte", field:"source", widthGrow:1, minWidth:125, formatter:"html", responsive:7},
+		{title:"Plataforma", field:"platform", widthGrow:1, minWidth:135, formatter:"html", responsive:0},
+		],
+		rowDblClick:function(e, row){ 
+ 			window.location=row.getData().gamefile;
+		},
+		rowClick:function(e, row){ 
+			var rowdata = row.getData(); 
+			var tmp = document.getElementById("name");
+			tmp.innerHTML = "<a href='" + row.getData().gamefile + "'>" + rowdata.name + "</a>";
+			tmp = document.getElementById("data");
+			tmp.innerHTML = rowdata.data;
+			tmp = document.getElementById("lastactivity");
+			tmp.innerHTML = rowdata.lastactivity;
+			tmp = document.getElementById("addeddate");
+			tmp.innerHTML = rowdata.addeddate;
+			tmp = document.getElementById("playtime");
+			tmp.innerHTML = rowdata.playtime;
+			tmp = document.getElementById("source");
+			tmp.innerHTML = rowdata.source;
+			tmp = document.getElementById("platform");
+			tmp.innerHTML = rowdata.platform;
+			tmp = document.getElementById("coverimage");
+			tmp.src = rowdata.coverimage;
+			tmp = document.getElementById("coverimagelink");
+			tmp.href = row.getData().gamefile;			
+		},
+	});
+
+	function escapeRegExp(string) {
+		return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+	}
+
+	function applyQuickField() {
+		var filterval = quickEl.options[quickEl.selectedIndex].value;
+		if (filterval.value == "")
+		{
+			table.clearFilter();
+		}
+		else
+		{
+			if (filterval == "Nenhum")
+			{
+				table.setFilter(dataFilter, {field:"data", compareval:filterval, exactMatch:true, noneOrEmpty:true});
+			}
+			else
+			{
+				table.setFilter(dataFilter, {field:"data", compareval:filterval, exactMatch:true, noneOrEmpty:false});
+			}
+		}
+	}
+
+	function dataFilter(data, filterParams){
+		//data - the data for the row being filtered
+		//filterParams - params object passed to the filter
+		if (filterParams.noneOrEmpty)
+		{
+			return ((he.decode(data[filterParams.field]).toLowerCase() == "") || (he.decode(data[filterParams.field]) == "Nenhum"));
+		}
+		else
+		{
+			if (filterParams.exactMatch)
+			{
+				if (filterParams.compareval == "#")
+				{
+					var firstchar = he.decode(data[filterParams.field]).toLowerCase().charAt(0);
+					return ((firstchar >= '0') && (firstchar <= '9')); 
+				}
+				else
+				{
+					//need to use indexof for the date fields as they contains times also
+					return he.decode(data[filterParams.field]).toLowerCase().indexOf(filterParams.compareval.toLowerCase()) == 0;
+				}
+			}
+			else
+			{
+				const regex = new RegExp(escapeRegExp(filterParams.compareval.toLowerCase()), 'g'); //comparevalue is text
+				return regex.test(he.decode(data[filterParams.field]).toLowerCase());
+			}
+		}
+    }
+
+	//Define variables for input elements
+	var fieldEl = document.getElementById("filter-field");
+	var valueEl = document.getElementById("filter-value");
+	var quickEl = document.getElementById("filter-quickfield"); 
+
+	//set filter if passed certain parameter
+	var url = window.location.href;
+	var hashindex = url.lastIndexOf("#quicklink-");
+	var urllen = url.length;
+
+	if (hashindex > -1)
+	{
+		var quicklinktext = "quicklink-";
+		hashindex += quicklinktext.length + 1;
+		
+		if (hashindex < urllen)
+		{
+			var filtervalue = url.substring(hashindex, urllen);
+			if (filtervalue != "")
+			{			
+				quickEl.value = decodeURI(filtervalue);	
+				applyQuickField();
+			}
+		}
+	}
+
+	//Trigger setFilter function with correct parameters
+	function updateFilter(){
+	  var filterVal = fieldEl.options[fieldEl.selectedIndex].value;
+
+	  if(filterVal){
+		table.setFilter(dataFilter, {field:filterVal, compareval:valueEl.value, exactMatch:false, noneOrEmpty:false});
+	  }
+	}
+
+	//Update filters on value change
+	document.getElementById("filter-field").addEventListener("change", updateFilter);
+	document.getElementById("filter-value").addEventListener("keyup", updateFilter);
+
+	//Clear filters on "Clear Filters" button click
+	document.getElementById("filter-clear").addEventListener("click", function(){
+	  fieldEl.value = "";
+	  valueEl.value = "";
+	  quickEl.value = "";
+	  table.clearFilter();
+	});
+
+   </script>
+	<TABLE class="detailstable">
+		<COLGROUP>
+		<COL>
+		<COL>
+		<COL style="width:170px;">
+		<COL>
+		<COL>
+		</COLGROUP>
+		<TR><TD rowspan="5"><a href="" id="coverimagelink"><img height="90" style="max-width: 100%;" id="coverimage" src=""></a></TD><TD colspan="4"></TD></TR>
+		<TR><TD><B>Nome</B></TD><TD colspan="3" id="name"></TD></TR>
+		<TR><TD><B>Última Atividade</B></TD><TD id="lastactivity"></TD><TD><B>Nome</B></TD><TD id="data"></TD></TR>
+		<TR><TD><B>Adicionado</B></TD><TD id="addeddate"></TD><TD><B>Fonte</B></TD><TD id="source"></TR>
+		<TR><TD><B>Tempo de jogo</B></TD><TD id="playtime"></TD><TD><B>Plataforma</B></TD><TD id="platform"></TD></TR>
+	</TABLE>
+	</body>
+</html>
