@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameHub | Sofa, partidas e Playnite</title>
+  <meta
+    name="description"
+    content="GameHub une os jogadores da casa com disponibilidade, agenda, ranking de partidas e historico importado do Playnite."
+  >
+  <meta property="og:title" content="GameHub">
+  <meta property="og:description" content="Disponibilidade da casa, agenda de jogatina, ranking de partidas e biblioteca do Playnite em um so lugar.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://JonasMMoreira.github.io/gamehub/">
+  <link rel="canonical" href="https://JonasMMoreira.github.io/gamehub/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="page-glow glow-left"></div>
+  <div class="page-glow glow-right"></div>
+
+  <header class="topbar">
+    <div class="brand-block">
+      <p class="eyebrow">GameHub</p>
+      <div>
+        <h1>Jogatina organizada para a casa toda</h1>
+        <p class="subcopy">
+          Agenda, disponibilidade, partidas e historico do Playnite sincronizados no
+          <strong>JonasMMoreira.github.io/gamehub</strong>.
+        </p>
+      </div>
+    </div>
+
+    <div class="topbar-actions">
+      <div id="auth-chip" class="auth-chip hidden">
+        <img id="auth-chip-avatar" class="avatar small" alt="Avatar do usuario">
+        <div>
+          <strong id="auth-chip-name">Jogador</strong>
+          <span id="auth-chip-house">Casa</span>
+        </div>
+      </div>
+      <button id="logout-button" class="ghost-button hidden" type="button">Sair</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="hero-column">
+      <article class="hero-card">
+        <p class="eyebrow accent">Foco principal</p>
+        <h2>Quem joga, quando joga e quem ganhou</h2>
+        <p>
+          O novo GameHub foi redesenhado para celular e prioriza o que faz a jogatina acontecer:
+          ver quem esta livre, marcar horario, registrar vencedores e manter o historico do
+          Playnite vivo no site.
+        </p>
+
+        <div class="hero-actions">
+          <button class="primary-button" data-go-tab="availability" type="button">Ver agenda</button>
+          <button class="secondary-button" data-go-tab="library" type="button">Importar Playnite</button>
+        </div>
+
+        <div class="status-inline">
+          <span class="live-pill">GitHub Pages + Supabase</span>
+          <span class="muted">Sem backend proprio, sem rodar local.</span>
+        </div>
+      </article>
+
+      <article class="side-card">
+        <div class="side-card-head">
+          <p class="eyebrow">Radar</p>
+          <strong>Quem topa hoje</strong>
+        </div>
+        <div id="home-availability-preview" class="stack-list">
+          <article class="empty-card">
+            <strong>Ninguem marcou horario ainda</strong>
+            <p>Quando a galera preencher a agenda, o radar da casa aparece aqui.</p>
+          </article>
+        </div>
+      </article>
+
+      <article class="side-card">
+        <div class="side-card-head">
+          <p class="eyebrow">Playnite</p>
+          <strong>Como atualizar rapido</strong>
+        </div>
+        <ol class="compact-steps">
+          <li>Exporte a biblioteca do Playnite em HTML.</li>
+          <li>Selecione a pasta exportada no GameHub.</li>
+          <li>Clique em sincronizar.</li>
+          <li>O site atualiza biblioteca, historico e metadados no Supabase.</li>
+        </ol>
+      </article>
+    </section>
+
+    <section class="app-column">
+      <div id="config-banner" class="config-banner hidden">
+        <strong>Configuracao Supabase pendente.</strong>
+        <span>Preencha o arquivo <code>config.js</code> para ativar login, agenda e sincronizacao do GameHub.</span>
+      </div>
+
+      <section id="auth-panel" class="auth-panel">
+        <div class="auth-intro">
+          <p class="eyebrow accent">Entrar na casa</p>
+          <h2>Login simples por usuario e senha</h2>
+          <p>
+            A interface nao pede email. O GameHub usa um identificador interno no Supabase para
+            manter a autenticacao compativel com GitHub Pages e continuar simples para quem vai usar.
+          </p>
+        </div>
+
+        <div class="auth-forms">
+          <form id="login-form" class="panel">
+            <h3>Entrar</h3>
+            <label>
+              Usuario
+              <input name="username" type="text" maxlength="24" required>
+            </label>
+            <label>
+              Senha
+              <input name="password" type="password" minlength="6" required>
+            </label>
+            <button class="primary-button" type="submit">Entrar</button>
+          </form>
+
+          <form id="register-form" class="panel">
+            <h3>Criar conta</h3>
+            <label>
+              Usuario
+              <input name="username" type="text" maxlength="24" required>
+            </label>
+            <label>
+              Nome exibido
+              <input name="displayName" type="text" maxlength="40" required>
+            </label>
+            <label>
+              Codigo da casa
+              <input name="householdCode" type="text" maxlength="18" required>
+            </label>
+            <label>
+              Senha
+              <input name="password" type="password" minlength="6" required>
+            </label>
+            <button class="secondary-button" type="submit">Criar conta</button>
+          </form>
+        </div>
+      </section>
+
+      <section id="app-shell" class="hidden">
+        <div class="summary-grid">
+          <article class="summary-card">
+            <span>Disponiveis hoje</span>
+            <strong id="stat-online-today">0</strong>
+            <small id="stat-online-today-meta">Sem marcacoes ainda.</small>
+          </article>
+          <article class="summary-card">
+            <span>Proxima jogatina</span>
+            <strong id="stat-next-session">Sem horario</strong>
+            <small id="stat-next-session-meta">Preencha a agenda para aparecer aqui.</small>
+          </article>
+          <article class="summary-card">
+            <span>Rei do sofa</span>
+            <strong id="stat-king">Sem dados</strong>
+            <small id="stat-king-meta">Registre partidas para abrir o ranking.</small>
+          </article>
+          <article class="summary-card">
+            <span>Ultima sync Playnite</span>
+            <strong id="stat-sync">Nunca</strong>
+            <small id="stat-sync-meta">Importe a pasta exportada para sincronizar.</small>
+          </article>
+        </div>
+
+        <nav class="top-tabs" aria-label="Navegacao principal">
+          <button class="top-tab active" data-tab="home" type="button">Agora</button>
+          <button class="top-tab" data-tab="availability" type="button">Agenda</button>
+          <button class="top-tab" data-tab="arena" type="button">Arena</button>
+          <button class="top-tab" data-tab="library" type="button">Playnite</button>
+          <button class="top-tab" data-tab="profile" type="button">Perfil</button>
+        </nav>
+
+        <section id="home-tab" class="tab-panel active">
+          <div class="dashboard-grid">
+            <article class="panel wide">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">Hoje</p>
+                  <h3>Pulso da casa</h3>
+                </div>
+              </div>
+              <div id="pulse-grid" class="pulse-grid"></div>
+            </article>
+
+            <article class="panel">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">Disponibilidade</p>
+                  <h3>Quem esta pronto</h3>
+                </div>
+              </div>
+              <div id="online-now-list" class="stack-list"></div>
+            </article>
+
+            <article class="panel">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">Fila da noite</p>
+                  <h3>Proximos horarios</h3>
+                </div>
+              </div>
+              <div id="next-sessions-list" class="stack-list"></div>
+            </article>
+
+            <article class="panel">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">Arena</p>
+                  <h3>Ultimos resultados</h3>
+                </div>
+              </div>
+              <div id="home-match-feed" class="stack-list"></div>
+            </article>
+
+            <article class="panel">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">Playnite</p>
+                  <h3>Historico recente</h3>
+                </div>
+              </div>
+              <div id="recent-activity-list" class="stack-list"></div>
+            </article>
+          </div>
+        </section>
+
+        <section id="availability-tab" class="tab-panel">
+          <div class="two-column">
+            <form id="availability-form" class="panel form-panel">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">Agenda</p>
+                  <h3>Marcar disponibilidade</h3>
+                </div>
+              </div>
+
+              <label>
+                Status
+                <select name="status">
+                  <option value="topo_jogar">Topo jogar</option>
+                  <option value="online_now">Online agora</option>
+                  <option value="marcado">Horario marcado</option>
+                  <option value="ocupado">Ocupado</option>
+                </select>
+              </label>
+
+              <label>
+                Jogo
+                <input id="availability-game" name="gameTitle" type="text" maxlength="80" list="game-titles" placeholder="Ex.: Bopl Battle">
+              </label>
+
+              <label>
+                Inicio
+                <input id="availability-start" name="startsAt" type="datetime-local" required>
+              </label>
+
+              <label>
+                Fim
+                <input id="availability-end" name="endsAt" type="datetime-local">
+              </label>
+
+              <label>
+                Recado
+                <textarea name="note" rows="4" maxlength="180" placeholder="Partiu depois das 20h?"></textarea>
+              </label>
+
+              <button class="primary-button" type="submit">Salvar agenda</button>
+            </form>
+
+            <article class="panel">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">Casa</p>
+                  <h3>Agenda compartilhada</h3>
+                </div>
+              </div>
+              <div id="availability-list" class="stack-list"></div>
+            </article>
+          </div>
+        </section>
+
+        <section id="arena-tab" class="tab-panel">
+          <div class="two-column">
+            <form id="match-form" class="panel form-panel">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">Arena</p>
+                  <h3>Registrar partida</h3>
+                </div>
+              </div>
+
+              <label>
+                Jogo
+                <input id="match-game" name="gameTitle" type="text" maxlength="80" list="game-titles" required>
+              </label>
+
+              <label>
+                Quem ganhou
+                <select id="match-winner" name="winnerUserId" required></select>
+              </label>
+
+              <label>
+                Quem perdeu
+                <select id="match-loser" name="loserUserId" required></select>
+              </label>
+
+              <label>
+                Quando foi
+                <input id="match-played-at" name="playedAt" type="datetime-local" required>
+              </label>
+
+              <label>
+                Observacao
+                <textarea name="notes" rows="3" maxlength="180" placeholder="Melhor de 3, final apertada, revanche pendente..."></textarea>
+              </label>
+
+              <button class="secondary-button" type="submit">Salvar resultado</button>
+            </form>
+
+            <article class="panel">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">Ranking</p>
+                  <h3>Placar da casa</h3>
+                </div>
+              </div>
+              <div id="leaderboard-list" class="stack-list"></div>
+            </article>
+          </div>
+
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Historico</p>
+                <h3>Partidas registradas</h3>
+              </div>
+            </div>
+            <div id="match-history-list" class="stack-list"></div>
+          </article>
+        </section>
+
+        <section id="library-tab" class="tab-panel">
+          <div class="two-column">
+            <form id="playnite-form" class="panel form-panel">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">Sync Playnite</p>
+                  <h3>Importar pasta exportada</h3>
+                </div>
+              </div>
+
+              <label class="file-input">
+                Pasta exportada do Playnite
+                <input id="playnite-folder" type="file" webkitdirectory directory multiple>
+              </label>
+
+              <p class="field-hint">
+                Selecione a pasta gerada pelo export HTML do Playnite. O GameHub vai ler o
+                <code>index.html</code> e as paginas individuais dos jogos.
+              </p>
+
+              <div class="button-row">
+                <button class="primary-button" type="submit">Sincronizar biblioteca</button>
+                <button id="export-backup-button" class="ghost-button" type="button">Baixar backup</button>
+              </div>
+            </form>
+
+            <article class="panel">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">Historico do Playnite</p>
+                  <h3>Ultimas sincronizacoes</h3>
+                </div>
+              </div>
+              <div id="sync-history-list" class="stack-list"></div>
+            </article>
+          </div>
+
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Atividade recente</p>
+                <h3>Historico importado</h3>
+              </div>
+            </div>
+            <div id="playnite-history-list" class="stack-list"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-head search-head">
+              <div>
+                <p class="eyebrow">Biblioteca</p>
+                <h3>Jogos sincronizados</h3>
+              </div>
+              <label class="search-box">
+                <span>Buscar</span>
+                <input id="library-search" type="search" placeholder="Nome, plataforma, genero...">
+              </label>
+            </div>
+            <div id="library-grid" class="library-grid"></div>
+          </article>
+        </section>
+
+        <section id="profile-tab" class="tab-panel">
+          <div class="two-column">
+            <article class="panel profile-card">
+              <div class="profile-block">
+                <img id="profile-avatar" class="avatar large" alt="Foto de perfil">
+                <div>
+                  <p class="eyebrow">Perfil</p>
+                  <h3 id="profile-title">Seu card gamer</h3>
+                  <p id="profile-subtitle" class="muted">Atualize sua identidade da casa.</p>
+                </div>
+              </div>
+
+              <label class="file-input">
+                Foto de perfil
+                <input id="avatar-input" type="file" accept="image/*">
+              </label>
+            </article>
+
+            <form id="profile-form" class="panel form-panel">
+              <label>
+                Usuario
+                <input id="profile-username" type="text" disabled>
+              </label>
+              <label>
+                Nome exibido
+                <input id="profile-display-name" name="displayName" type="text" maxlength="40" required>
+              </label>
+              <label>
+                Codigo da casa
+                <input id="profile-household" name="householdCode" type="text" maxlength="18" required>
+              </label>
+              <label>
+                Jogo favorito
+                <input id="profile-favorite-game" name="favoriteGame" type="text" maxlength="80">
+              </label>
+              <label>
+                Bio
+                <textarea id="profile-bio" name="bio" rows="4" maxlength="180"></textarea>
+              </label>
+              <button class="secondary-button" type="submit">Salvar perfil</button>
+            </form>
+          </div>
+        </section>
+
+        <nav class="mobile-dock" aria-label="Navegacao mobile">
+          <button class="dock-item active" data-tab="home" type="button">Agora</button>
+          <button class="dock-item" data-tab="availability" type="button">Agenda</button>
+          <button class="dock-item" data-tab="arena" type="button">Arena</button>
+          <button class="dock-item" data-tab="library" type="button">Playnite</button>
+          <button class="dock-item" data-tab="profile" type="button">Perfil</button>
+        </nav>
+      </section>
+    </section>
+  </main>
+
+  <datalist id="game-titles"></datalist>
+
+  <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="./config.js"></script>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
