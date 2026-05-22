@@ -1,5 +1,4 @@
 const pricingData = window.JM_PRICING_DATA;
-const unavailableNotice = document.querySelector("[data-pricing-unavailable]");
 
 if (pricingData) {
   const currencyFormatter = new Intl.NumberFormat("pt-BR", {
@@ -97,7 +96,7 @@ if (pricingData) {
     results: document.querySelector("[data-pricing-results]"),
     empty: document.querySelector("[data-pricing-empty]"),
     lastUpdated: document.querySelector("[data-pricing-updated]"),
-    statTotals: document.querySelectorAll("[data-stat-total]"),
+    statTotal: document.querySelector("[data-stat-total]"),
     statAreas: document.querySelector("[data-stat-areas]"),
     statMin: document.querySelector("[data-stat-min]"),
     statConsult: document.querySelector("[data-stat-consult]"),
@@ -215,9 +214,7 @@ if (pricingData) {
       const areas = new Set(items.map((item) => item.sheet));
       const consult = items.filter((item) => item.priceMode === "consult").length;
 
-      page.statTotals.forEach((element) => {
-        element.textContent = items.length.toString();
-      });
+      page.statTotal.textContent = items.length.toString();
       page.statAreas.textContent = areas.size.toString();
       page.statMin.textContent = numeric.length ? formatMoney(Math.min(...numeric)) : "Sob consulta";
       page.statConsult.textContent = consult.toString();
@@ -372,6 +369,4 @@ if (pricingData) {
 
     render();
   }
-} else if (unavailableNotice) {
-  unavailableNotice.hidden = false;
 }
