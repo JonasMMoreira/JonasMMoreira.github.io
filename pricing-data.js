@@ -1,6 +1,6 @@
 // Arquivo gerado automaticamente a partir da planilha de precificação.
 // Edite o .xlsx e execute atualizar-precos.ps1 para sincronizar.
-window.JM_PRICING_DATA = {
+window.PRICING_DATA = {
   "meta": {
     "sourceFile": "Precificacao_Servicos_JM_Edificacoesesse.xlsx",
     "sourceModifiedAt": "2026-05-22T14:14:54.691654",
