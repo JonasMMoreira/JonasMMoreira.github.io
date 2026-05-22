@@ -1291,41 +1291,6 @@ img {
   padding-bottom: 32px;
 }
 
-.pricing-noscript {
-  display: none;
-}
-
-.pricing-fallback-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.pricing-fallback-card,
-.pricing-unavailable {
-  padding: 28px;
-  background: rgba(239, 230, 215, 0.92);
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  box-shadow: var(--shadow);
-}
-
-.pricing-fallback-card h3,
-.pricing-unavailable h3 {
-  margin-top: 12px;
-  font-family: "Cormorant Garamond", serif;
-  font-size: 30px;
-  line-height: 1.08;
-}
-
-.pricing-fallback-card p,
-.pricing-fallback-card li,
-.pricing-unavailable p {
-  margin-top: 12px;
-  color: var(--muted);
-  line-height: 1.8;
-}
-
 .pricing-layout {
   display: grid;
   grid-template-columns: minmax(260px, 300px) minmax(0, 1fr);
@@ -1373,10 +1338,6 @@ img {
 .pricing-main {
   display: grid;
   gap: 20px;
-}
-
-.pricing-unavailable .stack-actions {
-  margin-top: 18px;
 }
 
 .pricing-search-group {
@@ -1673,7 +1634,6 @@ img {
   .contact-band,
   .cta-banner,
   .footer-grid,
-  .pricing-fallback-grid,
   .pricing-layout {
     grid-template-columns: 1fr;
   }
