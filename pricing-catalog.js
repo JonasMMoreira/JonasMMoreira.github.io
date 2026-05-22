@@ -1,4 +1,4 @@
-const pricingData = window.JM_PRICING_DATA;
+const pricingData = window.PRICING_DATA;
 
 if (pricingData) {
   const currencyFormatter = new Intl.NumberFormat("pt-BR", {
